@@ -8,114 +8,765 @@
 <meta property="og:title" content="แจงงบก่อนสร้าง · fj build by Engineer">
 <meta property="og:description" content="Fair &amp; Just — วิศวกรตัวจริง แจงงบจริง ก่อนคุณเซ็น">
 <meta property="og:image" content="https://fjbuildth.github.io/icon.png">
-<link rel="icon" href="icon.png"><link rel="apple-touch-icon" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.png"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#121212;--card:#1c1c1c;--line:#2c2c2c;--or:#ff8a1f;--tx:#ececec;--mu:#a9a9a9}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:Sarabun,system-ui,sans-serif;line-height:1.7}
-h1,h2,h3{font-family:Kanit,sans-serif;line-height:1.25;margin:0 0 .5em}a{color:var(--or)}
-.w{max-width:1080px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;background:rgba(18,18,18,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:5}
-nav .w{display:flex;align-items:center;justify-content:space-between;height:62px}
-.brand{display:flex;gap:10px;align-items:center;color:var(--tx);text-decoration:none;font-family:Kanit;font-weight:600}
-.brand img{width:36px;height:36px;border-radius:8px}
-.btn{display:inline-block;background:var(--or);color:#141414;font-family:Kanit;font-weight:600;padding:12px 22px;border-radius:999px;text-decoration:none}
-.btn.line{background:#06C755;color:#fff;display:inline-flex;align-items:center;gap:8px}.btn.line:hover{background:#05b34c}.li{width:24px;height:24px;flex:none}
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
-.btn.o{background:none;color:var(--or);border:2px solid var(--or)}
-header{padding:80px 0 60px;border-bottom:1px solid var(--line)}
-header h1{font-size:clamp(34px,6vw,58px);font-weight:800}header h1 span{color:var(--or)}
-header p.lead{font-size:20px;color:var(--mu);max-width:640px}
-.tag{display:inline-block;border:1px solid var(--or);color:var(--or);border-radius:999px;padding:2px 14px;font-size:14px;margin-bottom:18px}
-section{padding:64px 0;border-bottom:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
-.card h3{color:var(--or);font-size:20px}.card p{color:var(--mu);margin:0}
-.steps{counter-reset:s}.steps .card{position:relative;padding-top:56px}
-.steps .card:before{counter-increment:s;content:counter(s);position:absolute;top:18px;left:24px;font-family:Kanit;font-weight:800;font-size:26px;color:var(--or)}
-.cta{text-align:center}.cta h2{font-size:clamp(26px,4vw,38px)}
-ul.chk{list-style:none;padding:0}ul.chk li:before{content:"✓ ";color:var(--or);font-weight:700}
-footer{padding:36px 0;color:var(--mu);font-size:14px}footer .w{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
-.soc a{margin-right:14px}
-.about{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:36px;align-items:center}
-.vid{width:100%;aspect-ratio:9/16;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 10px 40px rgba(255,138,31,.15)}.vid iframe{width:100%;height:100%;border:0}
-.quote{border-left:4px solid var(--or);padding:10px 18px;margin:18px 0;font-family:Kanit;font-size:21px;line-height:1.5}
-.quote small{display:block;font-family:Sarabun;font-size:15px;color:var(--mu);margin-top:6px}
-.facts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.facts span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:15px}
-@media(max-width:760px){.about{grid-template-columns:1fr}.vid{max-width:340px;margin:0 auto}}
-.svc{display:flex;flex-direction:column;gap:6px}.svc .stag{font-size:13px;color:var(--mu)}.svc h3{margin:0}.sprice{font-family:Kanit;font-weight:800;font-size:24px;color:#fff}.svc p{flex:1}.svc .btn{text-align:center;margin-top:10px}
+/* VOICE: วิศวกรพูดตรง เป็นกลาง มั่นใจ ไม่ขายของ
+   IDEA: เว็บทำตัวเหมือน "แบบก่อสร้าง + ใบถอดปริมาณ" ที่ลูกค้าจับต้องได้
+   PICTURE: บ้าน 3 มิติจริงในหัวเว็บ หมุน แตะชิ้น ดูลำดับก่อสร้าง
+   COLOUR and TYPE: ดำถ่าน + ส้มแบรนด์ #ff8a1f + เทาคอนกรีต · Kanit หัวเรื่อง Sarabun เนื้อความ
+   LAYOUT: หัวเรื่องเต็มกว้าง > บ้าน 3D + แผงข้อมูล > 3 จุดเด่น > เหมาะกับใคร(=บริการ) > ตัวอย่างรายงาน > วิศวกร > FAQ */
+:root{color-scheme:dark;--bg:#121212;--bg2:#181818;--card:#1d1d1d;--line:#2e2e2e;--or:#ff8a1f;--ink:#ececec;--mu:#a6a6a6;--cc:#cfcbc2}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.65 Sarabun,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Kanit,sans-serif;line-height:1.1;margin:0 0 .45em;text-wrap:balance}
+h2{font-size:clamp(28px,4vw,40px)}h3{font-size:20px}
+a{color:var(--or)}p{margin:0 0 .8em}
+.w{max-width:1200px;margin:0 auto;padding:0 max(4vw,16px)}
+.band{padding:clamp(40px,6vw,80px) 0;border-bottom:1px solid var(--line)}
+.mu{color:var(--mu)}.sm{font-size:14px}
+nav{position:sticky;top:0;z-index:9;background:rgba(18,18,18,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;gap:22px;height:62px}
+.brand{font-family:Kanit;font-weight:600;color:var(--ink);text-decoration:none;display:flex;gap:10px;align-items:center;margin-right:auto}
+.logo{width:36px;height:36px;border-radius:9px;display:block}
+nav .lk{color:var(--mu);text-decoration:none;font-size:15px}nav .lk:hover{color:var(--ink)}
+@media(max-width:820px){nav .lk{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:999px;background:var(--or);color:#141414;font:600 16px Kanit;text-decoration:none;border:0;cursor:pointer}
+.btn.line{background:#06C755;color:#fff}.btn.o{background:none;color:var(--or);box-shadow:inset 0 0 0 2px var(--or)}
+.btn.s{min-height:40px;padding:6px 16px;font-size:15px}
+.btn:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+/* hero */
+.hero{padding:clamp(36px,5vw,64px) 0 28px}
+.hero .lic{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:var(--mu);border:1px solid var(--line);border-radius:999px;padding:4px 14px;margin-bottom:18px}
+.hero .lic b{color:var(--ink)}
+.hero h1{font-size:clamp(36px,6vw,62px);font-weight:800;max-width:14ch}
+.hero .lead{font-size:clamp(17px,2vw,20px);color:var(--mu);max-width:640px}
+.htop{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+.kp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.kp div{background:var(--bg2);padding:14px 16px}.kp b{display:block;font:800 clamp(22px,3vw,30px) Kanit;color:var(--or);white-space:nowrap}.kp span{font-size:14px;color:var(--mu)}
+@media(max-width:860px){.htop{grid-template-columns:1fr}}
+/* viewer */
+.viewer{display:grid;grid-template-columns:minmax(0,1fr) 350px;height:660px;margin-top:28px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0d0d0d}
+.fig{position:relative;min-height:440px;touch-action:none}
+.side{overflow-y:auto}
+.gl{font:600 14px Kanit;color:var(--mu);margin-bottom:6px}
+.seg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:#111;border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{min-height:40px;border:0;border-radius:9px;background:none;color:var(--ink);font:14px Sarabun;cursor:pointer;line-height:1.15}
+.seg button[aria-pressed=true]{background:var(--or);color:#141414;font-weight:600}
+.cks{display:flex;flex-wrap:wrap;gap:6px}
+.cks label{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 12px;border:1px solid #3a3a3a;border-radius:999px;font-size:14px;cursor:pointer;user-select:none}
+.cks input{accent-color:var(--or);width:16px;height:16px;margin:0}
+.cks label:has(input:not(:checked)){opacity:.5}.fig canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
+.fig .hint{position:absolute;left:14px;bottom:12px;font-size:13px;color:#bbb;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:8px;pointer-events:none}
+.fig .tools{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:38px;padding:6px 14px;border-radius:999px;border:1px solid #3a3a3a;background:rgba(20,20,20,.85);color:var(--ink);font:15px Sarabun;cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--or);color:var(--or)}
+.side{border-left:1px solid var(--line);background:var(--bg2);padding:18px;display:flex;flex-direction:column;gap:16px}
+.stage label{font:600 15px Kanit;display:flex;justify-content:space-between}.stage label span{color:var(--or)}
+input[type=range]{width:100%;accent-color:var(--or);height:32px}
+.info{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:150px}
+.info h3{font-size:17px;color:var(--or);margin-bottom:6px}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0;font-size:15px}.info dt{color:var(--mu)}.info dd{margin:0;text-align:right;white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mu);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+.sum tr[data-c]{cursor:pointer}.sum tr[data-c]:hover td,.sum tr.on td{color:var(--or)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.nogl{position:absolute;inset:0;display:none;place-items:center;padding:20px;text-align:center;color:var(--mu)}
+@media(max-width:900px){.viewer{grid-template-columns:1fr;height:auto}.side{overflow:visible}.side{border-left:0;border-top:1px solid var(--line)}.fig{min-height:400px}}
+/* pillars */
+.pil{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+.pc svg{width:52px;height:52px;margin-bottom:14px}
+.pc .big{font:800 34px Kanit;color:var(--ink);margin:auto 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.pc .big small{display:block;font:400 14px Sarabun;color:var(--mu)}
+@media(max-width:860px){.pil{grid-template-columns:1fr}}
+/* who / services */
+.who{margin-top:26px;border-top:1px solid var(--line)}
+.wr{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.wr .q{font:600 19px Kanit}.wr .q small{display:block;font:400 14px Sarabun;color:var(--mu);margin-top:4px}
+.wr .s b{display:block}.wr .s span{color:var(--mu);font-size:14.5px}
+.wr .p{font:800 20px Kanit;white-space:nowrap;text-align:right}
+.wr .p .btn{margin-top:6px}
+@media(max-width:760px){.wr{grid-template-columns:1fr}.wr .p{text-align:left;display:flex;gap:14px;align-items:center;flex-wrap:wrap}}
+.mem{margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:linear-gradient(90deg,rgba(255,138,31,.16),rgba(255,138,31,.04));border:1px solid rgba(255,138,31,.4);border-radius:14px;padding:16px 20px}
+.mem b{font-family:Kanit;font-size:18px}
+/* report sample */
+.rep{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;margin-top:26px;align-items:start}
+.sheet{background:#f4f2ee;color:#1d1d1d;border-radius:12px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.sheet h3{font-size:18px;margin-bottom:2px}.sheet .meta{font-size:13.5px;color:#555;margin-bottom:12px}
+.sheet table{font-size:14px}.sheet th{color:#666;border-color:#d6d2ca}.sheet td{border-color:#e2ded6}
+.flag{display:inline-block;font-size:12.5px;padding:1px 8px;border-radius:999px;background:#ffe2c7;color:#8a3d00;white-space:nowrap}
+.flag.ok{background:#dcefdc;color:#1e5a1e}
+.sheet .tot{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:2px solid #1d1d1d;font:600 16px Kanit}
+.del{list-style:none;padding:0;margin:0}.del li{padding:12px 0;border-bottom:1px solid var(--line)}.del b{display:block;font-family:Kanit}
+.kinds{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.kinds span{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:14px;color:var(--mu)}
+@media(max-width:860px){.rep{grid-template-columns:1fr}}
+@media(max-width:560px){.sheet{padding:14px}.sheet .hid{display:none}}
+/* about + faq */
+.ab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:22px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.facts span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14.5px}
+.qt{border-left:4px solid var(--or);padding:8px 16px;font:400 20px/1.45 Kanit;margin:16px 0}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font:600 17px Kanit;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--or);font-size:22px;line-height:1}details[open] summary::after{content:"–"}
+details p{color:var(--mu);margin:10px 0 0}
+@media(max-width:860px){.ab{grid-template-columns:1fr}}
+footer{padding:32px 0 44px;color:var(--mu);font-size:14px}footer .w{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+.warn{color:var(--or)}
+.note{font-size:13px;color:#8a8a8a;margin-top:8px}
+
+/* video explainer */
+.vx{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:32px;align-items:center;margin-top:24px}
+.vx1{grid-template-columns:1fr!important}.vx1 .flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}@media(max-width:700px){.vx1 .flow{grid-template-columns:1fr}}
+.vx video,.slot{width:100%;aspect-ratio:16/9;border-radius:16px;border:1px solid var(--line);background:#000;display:block}
+.slot{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;text-align:center;padding:20px;border:2px dashed #555;background:repeating-linear-gradient(45deg,#151515 0 14px,#1a1a1a 14px 28px);color:var(--mu)}.slot b{font-family:Kanit;color:var(--ink)}
+.ab3{grid-template-columns:minmax(220px,300px) minmax(0,1fr) minmax(0,1fr)!important;align-items:start}
+.whoami{width:100%;aspect-ratio:9/16;border-radius:18px;border:1px solid var(--line);background:#000;display:block;box-shadow:0 10px 40px rgba(255,138,31,.15)}
+@media(max-width:1000px){.ab3{grid-template-columns:minmax(220px,300px) minmax(0,1fr)!important}.ab3>:last-child{grid-column:1/-1}}
+@media(max-width:640px){.ab3{grid-template-columns:1fr!important}.whoami{max-width:320px;margin:0 auto}}
+.flow{list-style:none;padding:0;margin:0 0 18px;counter-reset:f}
+.flow li{position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line)}
+.flow li::before{counter-increment:f;content:counter(f);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:50%;background:var(--or);color:#141414;font:700 15px/30px Kanit;text-align:center}
+.flow b{font-family:Kanit}
+.get{background:linear-gradient(135deg,rgba(255,138,31,.18),rgba(255,138,31,.05));border:1px solid rgba(255,138,31,.45);border-radius:14px;padding:16px 18px}
+.get b{font:600 18px Kanit;display:block;margin-bottom:4px}
+@media(max-width:860px){.vx{grid-template-columns:1fr}}
+/* works tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px}
+.tabs button{min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid #3a3a3a;background:none;color:var(--ink);font:15px Sarabun;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--or);border-color:var(--or);color:#141414;font-weight:600}
+.pane[hidden]{display:none}
+.wk{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.wk{grid-template-columns:1fr}}
+.dash{background:#0f1115;border:1px solid #2a2e36;border-radius:16px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.dh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.dh b{font:600 17px Kanit}.dh span{font-size:13px;color:#8b93a1}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:#161a21;border:1px solid #262b34;border-radius:12px;padding:10px 12px}
+.kpi small{display:block;font-size:12.5px;color:#8b93a1}.kpi b{font:700 clamp(18px,2.2vw,24px) Kanit;white-space:nowrap}.kpi i{display:block;font-style:normal;font-size:12.5px;color:#6fd39a}
+.kpi.or b{color:var(--or)}
+@media(max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dg{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+@media(max-width:620px){.dg{grid-template-columns:1fr}}
+.panel{background:#161a21;border:1px solid #262b34;border-radius:12px;padding:12px 14px}
+.panel h4{margin:0 0 10px;font:600 14px Kanit;color:#c9ced6}
+.br{display:grid;grid-template-columns:7.5em minmax(0,1fr) 3.2em;gap:8px;align-items:center;font-size:13.5px;margin:5px 0}
+.br .t{height:10px;border-radius:6px;background:#232833;overflow:hidden}.br .t i{display:block;height:100%;border-radius:6px;background:var(--or)}
+.br .v{text-align:right;color:#c9ced6}
+.cols{display:flex;align-items:flex-end;gap:14px;height:150px;padding-top:8px}
+.cols div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:12.5px;color:#9aa2af}
+.cols i{display:block;width:100%;max-width:46px;border-radius:8px 8px 3px 3px;background:#4b5566}
+.cols i.on{background:var(--or)}.cols b{font:600 14px Kanit;color:var(--ink);margin-bottom:4px}
+.verdict{margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(111,211,154,.1);border:1px solid rgba(111,211,154,.35);font-size:14px}
+.verdict b{color:#6fd39a}
+.paper{background:#f6f4f0;color:#1d1d1d;border-radius:10px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.45);font-size:13px;line-height:1.5}
+.paper .ph{display:flex;align-items:center;gap:10px;border-bottom:2px solid #1d1d1d;padding-bottom:8px;margin-bottom:10px}
+.paper .ph img{width:30px;height:30px;border-radius:6px}.paper .ph b{font:600 15px Kanit;flex:1}.paper .ph span{font-size:11.5px;color:#666}
+.paper .big{font:800 30px Kanit;color:#c45a00}.paper table{font-size:12.5px}.paper th,.paper td{border-color:#ddd8cf;padding:4px 4px}.paper th{color:#666}
+.paper .sig{display:flex;justify-content:space-between;margin-top:12px;padding-top:8px;border-top:1px solid #ccc;font-size:11.5px;color:#555}
+.gal{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-top:26px}
+.gal figure{flex:0 0 min(78%,520px);scroll-snap-align:start;margin:0}
+.gal img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid var(--line);display:block}
+.gal figcaption{font-size:14px;color:var(--mu);margin-top:6px}
+.galnav{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<nav><div class="w"><a class="brand" href="./"><img src="icon.png" alt="fj build">แจงงบก่อนสร้าง</a><a class="btn line" href="https://line.me/R/ti/p/@204wgewn"><svg class="li" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2.5C6.2 2.5 1.5 6.3 1.5 11c0 4.2 3.7 7.7 8.8 8.4.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.6 14.6 22.5 12.9 22.5 11c0-4.7-4.7-8.5-10.5-8.5z"/><text x="12" y="13.6" text-anchor="middle" font-size="5.6" font-weight="800" font-family="Arial" fill="#06C755">LINE</text></svg>ทักไลน์</a></div></nav>
+<nav><div class="w">
+<a class="brand" href="#top"><img class="logo" src="logo.png" alt="fj build">แจงงบก่อนสร้าง</a>
+<a class="lk" href="#how3d">วิธีทำงาน</a><a class="lk" href="#why">จุดเด่น</a><a class="lk" href="#for">บริการ</a><a class="lk" href="#sample">ตัวอย่างงาน</a><a class="lk" href="#eng">วิศวกร</a>
+<a class="btn line s" href="https://line.me/R/ti/p/@204wgewn">ทักไลน์</a>
+</div></nav>
 
-<header><div class="w">
-<span class="tag">Fair &amp; Just — วิศวกรตัวจริง แจงงบจริง ก่อนคุณเซ็น</span>
-<h1>ใบเสนอราคาสร้างบ้าน<br><span>ให้วิศวกรตรวจก่อนเซ็น</span></h1>
-<p class="lead">ราคาต่อ ตร.ม. สมเหตุผลไหม ปริมาณเหล็ก–คอนกรีตตรงแบบหรือเปล่า รายการ "เหมา" ซ่อนอะไรไว้ — เราแจงให้ชัดทุกบรรทัด เป็นภาษาที่เจ้าของบ้านเข้าใจ</p>
-<p class="cta-row"><a class="btn line" href="https://line.me/R/ti/p/@204wgewn"><svg class="li" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2.5C6.2 2.5 1.5 6.3 1.5 11c0 4.2 3.7 7.7 8.8 8.4.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.6 14.6 22.5 12.9 22.5 11c0-4.7-4.7-8.5-10.5-8.5z"/><text x="12" y="13.6" text-anchor="middle" font-size="5.6" font-weight="800" font-family="Arial" fill="#06C755">LINE</text></svg>ส่งใบเสนอราคาทางไลน์ @204wgewn</a><a class="btn o" href="#services">ดูบริการ</a></p>
+<header class="hero" id="top"><div class="w">
+<div class="htop">
+<div>
+<span class="lic">วิศวกรโยธา <b>ภย. 64050</b> · ภูเก็ต · รับงานทั่วประเทศ</span>
+<h1>รู้งบจริงก่อนสร้าง ตรวจได้ทุกชิ้น</h1>
+<p class="lead">เราสร้างบ้านของคุณขึ้นในคอมพิวเตอร์ทีละชิ้นจากแบบกระดาษ ทั้งโครงสร้าง ผนัง ประตูหน้าต่าง และงานระบบ แล้วนับ วัด และคิดราคาจากชิ้นจริง ทุกตัวเลขในใบราคาชี้กลับไปที่ชิ้นส่วนได้ ไม่ใช่กะจากพื้นที่</p>
+<div class="row"><a class="btn" href="#for">เลือกบริการตามสิ่งที่คุณมี</a><a class="btn o" href="https://line.me/R/ti/p/@204wgewn">ส่งแบบหรือใบเสนอราคาทางไลน์</a></div>
+</div>
+<div class="kp">
+<div><b>10+ ปี</b><span>ประสบการณ์หน้างานจริง</span></div>
+<div><b>77 จ.</b><span>ราคาอัปเดตทุกเดือน</span></div>
+<div><b>30 นาที</b><span>รู้งบคร่าวๆ ไม่ต้องมีแบบ</span></div>
+</div>
+</div>
+
+<div class="viewer">
+<div class="fig" id="fig">
+<div class="tools">
+<button class="chip" id="bRot" aria-pressed="true">หมุนอัตโนมัติ</button>
+<button class="chip" id="bXr" aria-pressed="true">โปร่งแสง</button>
+<button class="chip" id="bDim" aria-pressed="true">ระยะ</button>
+<button class="chip" id="bPlan" aria-pressed="false">แปลน 2 มิติ</button>
+<button class="chip" id="bReset">มุมเริ่มต้น</button>
+</div>
+<div class="hint" id="hint">ลากเพื่อหมุน · ซูมด้วยล้อเมาส์หรือสองนิ้ว · แตะชิ้นส่วนเพื่อดูขนาด</div>
+<div class="nogl" id="nogl">เครื่องนี้แสดงภาพ 3 มิติไม่ได้ ลองเปิดด้วย Chrome หรือ Safari รุ่นใหม่</div>
+</div>
+<div class="side">
+<div><div class="gl">ทรงหลังคา</div>
+<div class="seg" id="roofSeg"><button data-r="gable" aria-pressed="true">จั่ว</button><button data-r="hip" aria-pressed="false">ปั้นหยา</button><button data-r="shed" aria-pressed="false">เพิงหมาแหงน</button><button data-r="flat" aria-pressed="false">ดาดฟ้า</button></div></div>
+<div><div class="gl">แสดงงาน</div>
+<div class="cks" id="disc"><label><input type="checkbox" value="st" checked>โครงสร้าง</label><label><input type="checkbox" value="ar" checked>สถาปัตย์</label><label><input type="checkbox" value="el" checked>ไฟฟ้า</label><label><input type="checkbox" value="pl" checked>ประปา-สุขาภิบาล</label><label><input type="checkbox" value="ac" checked>ปรับอากาศ</label></div></div>
+<div class="stage">
+<label for="st">ลำดับการก่อสร้าง <span id="stName"></span></label>
+<input type="range" id="st" min="1" max="8" step="1" value="8" aria-describedby="stName">
+</div>
+<div class="info" id="info" aria-live="polite">
+<h3>แตะชิ้นส่วนใดก็ได้</h3>
+<p class="mu sm" style="margin:0">ระบบจะบอกชื่อชิ้น ลำดับที่ ขนาด และปริมาณของชิ้นนั้น หรือแตะหมวดในตารางด้านล่างเพื่อดูทั้งหมวดพร้อมกัน</p>
+</div>
+<table class="sum" id="sum"><thead><tr><th>หมวด</th><th class="n">จำนวน</th><th class="n">ปริมาณ</th></tr></thead><tbody></tbody></table>
+<p class="note" style="margin:0">บ้านตัวอย่าง 2 ชั้น 8×10 ม. พื้นที่ใช้สอยประมาณ 160 ตร.ม. · ตัวเลขทุกตัวคำนวณจากขนาดชิ้นในโมเดลนี้ เปลี่ยนทรงหลังคาแล้วปริมาณเปลี่ยนตาม</p>
+</div>
+</div>
 </div></header>
 
-<section id="about"><div class="w about">
-<div class="vid"><iframe src="https://www.youtube.com/embed/PLozqwUL9GE?rel=0" title="เจ้าของ fj build คือใคร" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<section class="band" id="how3d"><div class="w">
+<h2>จากแบบกระดาษ 2 มิติ สู่บ้าน 3 มิติ และ BOQ</h2>
+<p class="mu" style="max-width:700px">4 ขั้นที่ทำให้ตัวเลขของเราตรวจย้อนได้ทุกชิ้น</p>
+<div class="vx vx1">
+
 <div>
-<span class="tag">เจ้าของ fj build คือใคร?</span>
-<h2>บันลือ วงษ์สุวรรณ<br><span style="color:var(--or)">วิศวกรโยธา · ผู้ก่อตั้ง fj build</span></h2>
-<p class="lic" style="margin:6px 0 12px;color:var(--mu);font-size:15px">✅ ภาคีวิศวกรโยธา เลขทะเบียน <b style="color:#fff">ภย. 64050</b> · ตรวจสอบได้ที่ <a href="https://service.coe.or.th/verify_license" target="_blank" rel="noopener" style="color:var(--or)">สภาวิศวกร (ค้นด้วยเลข 64050)</a><br><small>บริการของ fj build เป็นงานให้คำปรึกษา ประมาณราคา ตรวจ BOQ และวางแผน — ไม่มีการเซ็นรับรองแบบหรือมอบลายเซ็นให้ผู้ใดนำไปใช้</small></p>
-<div class="facts"><span>หน้างาน 13 ปี</span><span>สนามบิน · รีสอร์ต · โรงแรม 5 ดาว</span><span>อาคารราชการ</span><span>วิลล่า + คอนโด 168 ยูนิต</span></div>
-<p>ออกแบบ · คำนวณโครงสร้าง · ถอดปริมาณ BOQ · โมเดล BIM 3D · แผนงาน · ขออนุญาต · คุมหน้างาน — ทำงานร่วมกับทีม AI 16 ตำแหน่ง และ<b>ตรวจทุกงานเองก่อนส่งถึงมือคุณ</b></p>
-<div class="quote">"งบคือจุดเริ่มต้น ถ้างบคุณชัด คุณก็ต่ออย่างอื่นได้หมด ไม่ว่าเรื่องอะไร"<small>— บันลือ วงษ์สุวรรณ</small></div>
-<p class="cta-row"><a class="btn line" href="https://line.me/R/ti/p/@204wgewn"><svg class="li" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2.5C6.2 2.5 1.5 6.3 1.5 11c0 4.2 3.7 7.7 8.8 8.4.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s6.1-3.6 8.3-6.2c1.5-1.7 2.2-3.4 2.2-5.1 0-4.7-4.7-8.5-10.5-8.5z"/></svg>เริ่มจากงบให้ชัด · ทักไลน์</a></p>
-</div></div></section>
-<section id="member"><div class="w">
-<span class="tag">สมาชิกฟรี</span>
-<h2>สมัครสมาชิก fj build <span style="color:var(--or)">ลด 10% ทุกบริการ</span></h2>
-<div class="grid" style="margin:18px 0">
-<div class="card"><h3>💰 ลด 10% ทุกบริการ</h3><p>หักให้อัตโนมัติในไลน์ ใช้ร่วมกับโค้ดโปรได้</p></div>
-<div class="card"><h3>📊 ราคาวัสดุ-ค่าแรง 77 จังหวัด</h3><p>โหลดฟรีรายเดือน</p></div>
-<div class="card"><h3>📐 ชีต Excel ประมาณราคา</h3><p>ชีตคำนวณ/ประมาณราคาฟรี</p></div>
-<div class="card"><h3>🛠️ เครื่องมือบนเว็บ</h3><p>ใช้ฟรีทุกตัวที่เปิดให้สมาชิก (ทยอยเปิด)</p></div>
+<ol class="flow">
+<li><b>อ่านแบบทุกแผ่น</b><br><span class="mu">แปลน รูปด้าน รูปตัด แบบโครงสร้าง และงานระบบ</span></li>
+<li><b>สร้างบ้านในคอมพิวเตอร์ทีละชิ้น</b><br><span class="mu">เสา คาน พื้น ผนัง ประตูหน้าต่าง หลังคา ท่อและสายไฟ ตามขนาดในแบบ</span></li>
+<li><b>นับและวัดจากชิ้นจริง ออกเป็น BOQ</b><br><span class="mu">ทุกบรรทัดในใบราคาชี้กลับไปที่ชิ้นในบ้านได้</span></li>
+<li><b>วิศวกรตรวจทุกงานก่อนส่ง</b><br><span class="mu">บันลือ วงษ์สุวรรณ ภย. 64050</span></li>
+</ol>
+<div class="get"><b>บ้าน 3 มิติของคุณ ได้รับไปด้วย</b><span class="mu">งานที่มีแบบหรือออกแบบให้ (บริการ 1.2 · 2.2 · 3) ส่งไฟล์บ้าน 3 มิติแบบเดียวกับด้านบน เปิดบนมือถือได้ หมุนดู แตะชิ้นดูขนาด ใช้คุยกับผู้รับเหมาและตรวจงานหน้างานต่อได้</span></div>
 </div>
-<p style="color:var(--mu)">สมัครครั้งเดียว ระบบจำไลน์คุณตลอด · กรอก 1 นาที แล้วยืนยันในไลน์ @204wgewn</p>
-<p class="cta-row"><a class="btn" href="member.html">📝 สมัครสมาชิกฟรี</a><a class="btn o" href="#services">ดูบริการทั้งหมด</a></p>
-</div></section>
-<section id="services"><div class="w">
-<span class="tag">เลือกตามสิ่งที่คุณมี</span>
-<h2>บริการของเรา <span style="color:var(--or)">ครบเหมือนในไลน์</span></h2>
-<p style="color:var(--mu)">กรอกบนเว็บได้เลย ส่งแล้วระบบพาเข้าไลน์ @204wgewn พร้อมรหัสงาน แจ้งราคาและส่งงานในแชต · สมาชิกลดเพิ่ม 10%</p>
-<div class="grid"><div class="card svc"><span class="stag">มีขนาดบ้านในใจ หรือมีแบบแล้ว</span><h3>ประมาณงบสร้างบ้าน</h3><div class="sprice">590 / 890 บ.</div><p>≤2 ชั้น ≤250 ตร.ม. 590 · ใหญ่กว่า 890 · ได้ผลใน 30 นาที</p><a class="btn" href="form.html?svc=1.1">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีโฉนดที่ดิน</span><h3>ที่ดินนี้สร้างอะไรคุ้ม</h3><div class="sprice">990 / 1,990 บ.</div><p>แปลง ≤200 ตร.วา 990 · ใหญ่กว่า 1,990 · เทียบเพิ่ม +200/+400 ต่อประเภท</p><a class="btn" href="form.html?svc=1.2">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีแค่ BOQ ของผู้รับเหมา</span><h3>ตรวจราคา BOQ</h3><div class="sprice">590–1,090 บ.</div><p>คิดตามพื้นที่ใช้สอย · ได้ผลใน 1 ชม.</p><a class="btn" href="form.html?svc=2.1">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีแบบ + BOQ</span><h3>ตรวจ BOQ + คิดปริมาณใหม่จากแบบ</h3><div class="sprice">20 บ./ตร.ม.</div><p>ขั้นต่ำ 3,000 บ. · วิศวกรตรวจแบบแล้วส่งใบเสนอราคา</p><a class="btn" href="form.html?svc=2.2">ขอใบเสนอราคา</a></div><div class="card svc"><span class="stag">มีแบบ ยังไม่มี BOQ</span><h3>คิดปริมาณงานและราคาจากแบบ</h3><div class="sprice">25 บ./ตร.ม.</div><p>ขั้นต่ำ 3,750 บ. · วิศวกรตรวจแบบแล้วส่งใบเสนอราคา</p><a class="btn" href="form.html?svc=3">ขอใบเสนอราคา</a></div><div class="card svc"><span class="stag">ไม่แน่ใจว่าควรเลือกอะไร</span><h3>คุยกับวิศวกร</h3><div class="sprice">ปรึกษาฟรี</div><p>ตอบในเวลาทำการ 08–21 น.</p><a class="btn line" href="https://line.me/R/oaMessage/@204wgewn/?%E0%B8%82%E0%B8%AD%E0%B8%84%E0%B8%B8%E0%B8%A2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3">คุยกับวิศวกรในไลน์</a></div></div></div></section>
-
-<section><div class="w">
-<h2>ทำงานอย่างไร</h2>
-<div class="grid steps">
-<div class="card"><h3>ส่งเอกสาร</h3><p>ส่งใบเสนอราคา แบบ หรือรูปถ่ายทางไลน์</p></div>
-<div class="card"><h3>ประเมินขอบเขต</h3><p>แจ้งค่าบริการและเวลาส่งงานให้ทราบก่อนเริ่ม</p></div>
-<div class="card"><h3>วิศวกรตรวจ</h3><p>ตรวจละเอียดทีละรายการ เทียบแบบและฐานราคา</p></div>
-<div class="card"><h3>รับรายงาน</h3><p>รายงาน PDF + Excel อ่านง่าย พร้อมคำแนะนำต่อรอง</p></div>
-</div></div></section>
-
-<section><div class="w grid">
-<div><h2>ทำไมต้องเรา</h2>
-<ul class="chk">
-<li>วิศวกรโยธามีใบอนุญาต กว. ทำงานเอง</li>
-<li>ประสบการณ์คุมงานวิลล่าและคอนโดระดับหลายร้อยล้าน</li>
-<li>ฐานราคากลางปรับตามจังหวัด ไม่ใช่เดา</li>
-<li>เป็นกลาง ไม่รับค่านายหน้าจากผู้รับเหมา</li>
-</ul></div>
-<div class="card"><h3>ความรู้ฟรีทุกสัปดาห์</h3><p>ติดตาม "วิศวกรน้อย" แจงงบสร้างบ้านเป็นคลิปสั้น เข้าใจง่าย ไม่โดนหลอก</p>
-<p class="soc" style="margin-top:12px"><a href="https://www.tiktok.com/@fjbuildth">TikTok</a><a href="https://www.youtube.com/@fjbuildth">YouTube</a><a href="https://www.instagram.com/fjbuildth">Instagram</a><a href="https://www.facebook.com/profile.php?id=61596813422753">Facebook</a></p></div>
+</div>
 </div></section>
 
-<section class="cta"><div class="w">
-<h2>ก่อนเซ็น ให้วิศวกรดูสักครั้ง</h2>
-<p style="color:var(--mu)">ส่งใบเสนอราคามาได้เลย ตอบไวทางไลน์</p>
-<p><a class="btn line" href="https://line.me/R/ti/p/@204wgewn"><svg class="li" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2.5C6.2 2.5 1.5 6.3 1.5 11c0 4.2 3.7 7.7 8.8 8.4.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8.1-6C21.6 14.6 22.5 12.9 22.5 11c0-4.7-4.7-8.5-10.5-8.5z"/><text x="12" y="13.6" text-anchor="middle" font-size="5.6" font-weight="800" font-family="Arial" fill="#06C755">LINE</text></svg>แอดไลน์ @204wgewn</a><br><img src="line_qr.png" alt="QR LINE @204wgewn" style="width:200px;margin-top:18px;border-radius:12px;background:#fff;padding:10px"></p>
+<section class="band" id="why"><div class="w">
+<h2>3 อย่างที่ทำให้งบของเราเชื่อได้</h2>
+<p class="mu" style="max-width:680px">งบที่ดีต้องตอบได้ว่าแต่ละบาทมาจากไหน เราจึงทำงานจากชิ้นงานจริง สถิติงานจริง และราคาตลาดเดือนล่าสุด</p>
+<div class="pil">
+<div class="pc">
+<svg viewBox="0 0 52 52" fill="none" stroke="#ff8a1f" stroke-width="2.2" stroke-linejoin="round"><path d="M6 40 26 48 46 40V18L26 10 6 18Z"/><path d="M6 18 26 26 46 18M26 26v22"/><path d="M14 22v12M20 24.5v12" stroke="#cfcbc2"/></svg>
+<h3>ถอดปริมาณจากบ้านจำลองทีละชิ้น</h3>
+<p class="mu">แบบ 2 มิติถูกแปลงเป็นบ้าน 3 มิติครบทุกเสา คาน พื้น ผนัง หลังคา นับจำนวนและวัดขนาดจากชิ้นจริง สงสัยบรรทัดไหนในใบราคา ชี้กลับไปดูชิ้นนั้นได้ทันที</p>
+<p class="big">ทุกชิ้น<small>นับได้ วัดได้ ตรวจย้อนได้</small></p>
+</div>
+<div class="pc">
+<svg viewBox="0 0 52 52" fill="none" stroke="#ff8a1f" stroke-width="2.2"><path d="M8 44h36"/><rect x="11" y="28" width="6" height="16" stroke="#cfcbc2"/><rect x="23" y="20" width="6" height="24" stroke="#cfcbc2"/><rect x="35" y="12" width="6" height="32"/><path d="M8 30 22 18l8 6 14-14"/></svg>
+<h3>ประมาณการด่วนจากสถิติงานจริง</h3>
+<p class="mu">ยังไม่มีแบบก็รู้งบได้ ใช้ฐานสถิติราคางานก่อสร้างจริง ผ่านการกลั่นกรองจากประสบการณ์หน้างานกว่า 10 ปี ทั้งบ้าน วิลล่า โรงแรม และอาคารสาธารณะ</p>
+<p class="big">10+ ปี<small>ประสบการณ์หน้างาน · ได้ผลในประมาณ 30 นาที</small></p>
+</div>
+<div class="pc">
+<svg viewBox="0 0 52 52" fill="none" stroke="#ff8a1f" stroke-width="2.2"><rect x="8" y="10" width="36" height="34" rx="4"/><path d="M8 19h36M17 6v8M35 6v8" /><path d="M17 31l6 6 12-12" stroke="#cfcbc2"/></svg>
+<h3>ราคาอัปเดตทุกเดือน ตามจังหวัด</h3>
+<p class="mu">ราคาวัสดุและค่าแรงอ้างอิงข้อมูลกระทรวงพาณิชย์ ปรับตามจังหวัดที่คุณจะสร้าง ไม่ใช้ราคาเก่าหรือราคากรุงเทพฯ มาใช้ทั้งประเทศ</p>
+<p class="big">ต.ค. 69<small>ข้อมูลล่าสุด · ครบ 77 จังหวัด</small></p>
+</div>
+</div>
+</div></section>
+
+<section class="band" id="for"><div class="w">
+<h2>เหมาะกับใคร เลือกตามสิ่งที่คุณมี</h2>
+<p class="mu">กรอกบนเว็บได้เลย ส่งแล้วระบบพาเข้าไลน์ @204wgewn พร้อมรหัสงาน แจ้งราคาและส่งงานในแชต</p>
+<div class="who">
+<div class="wr"><div class="q">ยังไม่มีแบบ แต่อยากรู้ว่าต้องเตรียมเงินเท่าไร<small>มีขนาดบ้านในใจ หรือมีแบบร่างแล้ว</small></div><div class="s"><b>ประมาณงบสร้างบ้าน</b><span>≤2 ชั้น ≤250 ตร.ม. 590 · ใหญ่กว่า 890 · ได้ผลใน 30 นาที</span></div><div class="p">590 บ.<br><a class="btn s" href="form.html?svc=1.1">เริ่มกรอกข้อมูล</a></div></div>
+<div class="wr"><div class="q">มีที่ดิน อยากรู้ว่าสร้างอะไรคุ้มที่สุด<small>มีโฉนดหรือขนาดแปลง</small></div><div class="s"><b>ที่ดินนี้สร้างอะไรคุ้ม</b><span>แปลง ≤200 ตร.วา 990 · ใหญ่กว่า 1,990 · เทียบเพิ่มประเภทละ +200/+400</span></div><div class="p">990 บ.<br><a class="btn s" href="form.html?svc=1.2">เริ่มกรอกข้อมูล</a></div></div>
+<div class="wr"><div class="q">ได้ใบเสนอราคาผู้รับเหมามาแล้ว ไม่แน่ใจว่าแพงไหม<small>มีแค่ BOQ ยังไม่มีแบบ</small></div><div class="s"><b>ตรวจราคา BOQ</b><span>คิดตามพื้นที่ใช้สอย · ได้ผลใน 1 ชม.</span></div><div class="p">590–1,090 บ.<br><a class="btn s" href="form.html?svc=2.1">เริ่มกรอกข้อมูล</a></div></div>
+<div class="wr"><div class="q">มีทั้งแบบและ BOQ อยากรู้ว่าปริมาณตรงแบบไหม<small>เช็กละเอียดทุกรายการก่อนเซ็นสัญญา</small></div><div class="s"><b>ตรวจ BOQ + คิดปริมาณใหม่จากแบบ</b><span>ขั้นต่ำ 3,000 บ. · วิศวกรดูแบบแล้วส่งใบเสนอราคา</span></div><div class="p">20 บ./ตร.ม.<br><a class="btn s" href="form.html?svc=2.2">ขอใบเสนอราคา</a></div></div>
+<div class="wr"><div class="q">มีแบบแล้ว ต้องการ BOQ ไปยื่นกู้หรือเปิดประมูล<small>ยังไม่มีใบราคาจากใคร</small></div><div class="s"><b>คิดปริมาณงานและราคาจากแบบ</b><span>ขั้นต่ำ 3,750 บ. · วิศวกรดูแบบแล้วส่งใบเสนอราคา</span></div><div class="p">25 บ./ตร.ม.<br><a class="btn s" href="form.html?svc=3">ขอใบเสนอราคา</a></div></div>
+<div class="wr"><div class="q">ไม่แน่ใจว่าควรเริ่มตรงไหน<small>เล่าสถานการณ์ให้วิศวกรฟัง</small></div><div class="s"><b>คุยกับวิศวกร</b><span>ตอบในเวลาทำการ 08–21 น.</span></div><div class="p">ปรึกษาฟรี<br><a class="btn line s" href="https://line.me/R/oaMessage/@204wgewn/?%E0%B8%82%E0%B8%AD%E0%B8%84%E0%B8%B8%E0%B8%A2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3">คุยในไลน์</a></div></div>
+</div>
+<div class="mem"><div><b>สมาชิกฟรี ลด 10% ทุกบริการ</b><br><span class="mu sm">ใช้ร่วมกับโค้ดโปรได้ · รับไฟล์ราคาวัสดุ-ค่าแรง 77 จังหวัดและชีต Excel · สมัครครั้งเดียว ระบบจำไลน์คุณตลอด</span></div><a class="btn s" href="member.html">สมัครสมาชิก 1 นาที</a></div>
+</div></section>
+
+<section class="band" id="sample"><div class="w">
+<h2>ตัวอย่างงานที่คุณจะได้รับ</h2>
+<p class="mu">หน้าแดชบอร์ดอ่านง่ายบนมือถือ คู่กับรายงาน PDF ที่วิศวกรลงนาม · เลือกดูตามบริการ</p>
+<div class="tabs" role="tablist">
+<button role="tab" aria-selected="true" aria-controls="p11" id="t11">1.1 ประมาณงบสร้างบ้าน</button>
+<button role="tab" aria-selected="false" aria-controls="p12" id="t12">1.2 ที่ดินนี้สร้างอะไรคุ้ม</button>
+<button role="tab" aria-selected="false" aria-controls="p2" id="t2">2.x ตรวจใบเสนอราคา BOQ</button>
+</div>
+
+<div class="pane" id="p11" role="tabpanel" aria-labelledby="t11"><div class="wk">
+<div class="dash">
+<div class="dh"><b>แดชบอร์ดงบประมาณ · บ้าน 2 ชั้น 180 ตร.ม.</b><span>ภูเก็ต · สเปกกลาง · ราคาอ้างอิง ต.ค. 69</span></div>
+<div class="kpis">
+<div class="kpi or"><small>งบประมาณรวม</small><b>2.88 ลบ.</b></div>
+<div class="kpi"><small>บาท / ตร.ม.</small><b>16,000</b></div>
+<div class="kpi"><small>ช่วงที่เป็นไปได้</small><b>2.6–3.2 ลบ.</b></div>
+<div class="kpi"><small>ระยะก่อสร้าง</small><b>8–10 เดือน</b></div>
+</div>
+<div class="dg">
+<div class="panel"><h4>งบแยกตามหมวดงาน</h4><div id="cat11"></div></div>
+<div class="panel"><h4>เทียบ 3 ระดับสเปก (ล้านบาท)</h4>
+<div class="cols"><div><b>2.45</b><i style="height:62%"></i>ประหยัด</div><div><b>2.88</b><i class="on" style="height:73%"></i>กลาง</div><div><b>3.45</b><i style="height:88%"></i>ดี</div></div>
+<div class="verdict"><b>คำแนะนำ</b> เตรียมงบ 2.9–3.1 ลบ. รวมเผื่อเหลือเผื่อขาด 5%</div></div>
+</div>
+</div>
+<div class="paper" aria-label="ตัวอย่างหน้าสรุป PDF">
+<div class="ph"><img src="logo.png" alt=""><b>สรุปงบประมาณก่อสร้าง</b><span>หน้า 1/2</span></div>
+<p style="margin:0">บ้าน 2 ชั้น 3 ห้องนอน 180 ตร.ม. · ภูเก็ต</p>
+<div class="big">2,880,000 บาท</div>
+<p style="margin:0 0 8px;color:#555">ประมาณ 16,000 บาท/ตร.ม. · ไม่รวม VAT และค่าที่ดิน</p>
+<table><thead><tr><th>หมวด</th><th class="n">บาท</th></tr></thead><tbody>
+<tr><td>งานโครงสร้าง</td><td class="n">806,400</td></tr><tr><td>งานสถาปัตย์</td><td class="n">1,324,800</td></tr><tr><td>งานระบบ</td><td class="n">432,000</td></tr><tr><td>เบ็ดเตล็ด + ค่าดำเนินการ</td><td class="n">316,800</td></tr>
+</tbody></table>
+<div class="sig"><span>หน้า 2: ที่มาของตัวเลข และวิธีคิด</span><span>ผู้ประเมิน ภย. 64050</span></div>
+</div>
+</div></div>
+
+<div class="pane" id="p12" role="tabpanel" aria-labelledby="t12" hidden><div class="wk">
+<div class="dash">
+<div class="dh"><b>แดชบอร์ดความคุ้มค่า · ที่ดิน 100 ตร.วา</b><span>ภูเก็ต · ห้องเช่ารายเดือน · เทียบ 2/3/4 ชั้น</span></div>
+<div class="kpis">
+<div class="kpi or"><small>สร้างได้ไหม</small><b>ได้ · 3 ชั้น</b><i>ผ่านเช็กลิสต์ 9/10</i></div>
+<div class="kpi"><small>เงินลงทุนก่อสร้าง</small><b>9.8 ลบ.</b></div>
+<div class="kpi"><small>คืนทุน (ปล่อยเช่า)</small><b>9.3 ปี</b></div>
+<div class="kpi"><small>กำไรขั้นต้น (ขาย)</small><b>18%</b><i style="color:#ff8a8a">ต่ำกว่าเป้า 35%</i></div>
+</div>
+<div class="dg">
+<div class="panel"><h4>ปีคืนทุน เทียบจำนวนชั้น</h4>
+<div class="cols"><div><b>11.2</b><i style="height:90%"></i>2 ชั้น</div><div><b>9.3</b><i class="on" style="height:75%"></i>3 ชั้น</div><div><b>9.9</b><i style="height:80%"></i>4 ชั้น</div></div></div>
+<div class="panel"><h4>ปล่อยเช่า กับ ขาย</h4>
+<div class="br"><span>รายได้สุทธิ/ปี</span><span class="t"><i style="width:62%"></i></span><span class="v">1.05</span></div>
+<div class="br"><span>มูลค่าขาย</span><span class="t"><i style="width:84%;background:#4b5566"></i></span><span class="v">13.9</span></div>
+<div class="br"><span>ต้นทุนรวมที่ดิน</span><span class="t"><i style="width:70%;background:#4b5566"></i></span><span class="v">11.8</span></div>
+<div class="verdict"><b>คำแนะนำ</b> สร้าง 3 ชั้น 18 ห้อง แล้วปล่อยเช่า</div></div>
+</div>
+</div>
+<div class="paper" aria-label="ตัวอย่างหน้าสรุปผู้บริหาร PDF">
+<div class="ph"><img src="logo.png" alt=""><b>สรุปผู้บริหาร</b><span>เล่ม A3 · หน้า 3/18</span></div>
+<p style="margin:0"><b>① สร้างได้ไหม</b> ได้ สูงสุด 3 ชั้นตามระยะร่นและความสูงที่กฎหมายกำหนด</p>
+<p style="margin:4px 0 8px"><b>② คุ้มไหม</b> ปล่อยเช่าคุ้มกว่าขาย คืนทุนประมาณ 9.3 ปี</p>
+<table><thead><tr><th>ทางเลือก</th><th class="n">ลงทุน</th><th class="n">คืนทุน</th></tr></thead><tbody>
+<tr><td>2 ชั้น 12 ห้อง</td><td class="n">6.9 ลบ.</td><td class="n">11.2 ปี</td></tr><tr><td><b>3 ชั้น 18 ห้อง</b></td><td class="n"><b>9.8 ลบ.</b></td><td class="n"><b>9.3 ปี</b></td></tr><tr><td>4 ชั้น 24 ห้อง</td><td class="n">13.6 ลบ.</td><td class="n">9.9 ปี</td></tr>
+</tbody></table>
+<div class="sig"><span>มีผังรูปแปลง แปลนทุกชั้น บ้าน 3 มิติ</span><span>ผู้ประเมิน ภย. 64050</span></div>
+</div>
+</div></div>
+
+<div class="pane" id="p2" role="tabpanel" aria-labelledby="t2" hidden><div class="rep">
+<div class="sheet">
+<h3>รายงานตรวจใบเสนอราคา</h3>
+<div class="meta">บ้านเดี่ยว 2 ชั้น 220 ตร.ม. · ภูเก็ต · ราคาอ้างอิง ต.ค. 69</div>
+<table>
+<thead><tr><th>รายการ</th><th class="n">ผู้รับเหมาเสนอ</th><th class="n">ถอดจากแบบ</th><th class="hid">ผล</th></tr></thead>
+<tbody>
+<tr><td>คอนกรีตโครงสร้าง</td><td class="n">42.0 ลบ.ม.</td><td class="n">36.5 ลบ.ม.</td><td class="hid"><span class="flag">ปริมาณเกินแบบ</span></td></tr>
+<tr><td>เหล็กเสริม</td><td class="n">4,850 กก.</td><td class="n">4,720 กก.</td><td class="hid"><span class="flag ok">อยู่ในเกณฑ์</span></td></tr>
+<tr><td>ผนังก่ออิฐมวลเบา</td><td class="n">410 ตร.ม.</td><td class="n">352 ตร.ม.</td><td class="hid"><span class="flag">ไม่หักช่องเปิด</span></td></tr>
+<tr><td>งานหลังคา</td><td class="n">เหมา</td><td class="n">168 ตร.ม.</td><td class="hid"><span class="flag">ไม่ระบุสเปก</span></td></tr>
+<tr><td>สุขภัณฑ์</td><td class="n">3 ชุด</td><td class="n">3 ชุด</td><td class="hid"><span class="flag ok">ตรงแบบ</span></td></tr>
+</tbody></table>
+<div class="tot"><span>รายการที่ควรต่อรอง</span><span>3 จาก 5 รายการ</span></div>
+<p class="note" style="color:#777">ตัวอย่างรูปแบบรายงาน ตัวเลขสมมติ</p>
+</div>
+<div>
+<ul class="del">
+<li><b>รายงาน PDF อ่านง่าย</b><span class="mu">สรุปหน้าแรกว่าแพงหรือไม่ ตรงไหน เท่าไร</span></li>
+<li><b>Excel แยกทุกรายการ</b><span class="mu">ปริมาณ ราคาวัสดุ ค่าแรง แก้ตัวเลขต่อเองได้</span></li>
+<li><b>บ้าน 3 มิติของคุณ (2.2)</b><span class="mu">เปิดดูบนมือถือ แตะชิ้นดูที่มาของปริมาณ</span></li>
+<li><b>ประเด็นต่อรองกับผู้รับเหมา</b><span class="mu">เขียนเป็นภาษาเจ้าของบ้าน นำไปคุยได้ทันที</span></li>
+</ul>
+</div>
+</div></div>
+<p class="note">ตัวอย่างรูปแบบงาน ตัวเลขสมมติ</p>
+
+<div class="gal" id="gal">
+<figure><img src="d1.webp" alt="ห้องประชุมพร้อมจอแดชบอร์ดกราฟงบและแบบอาคาร" loading="lazy"><figcaption>สรุปงบและแบบบนจอเดียว</figcaption></figure>
+<figure><img src="d2.webp" alt="จอติดตามหลายโครงการพร้อมสถานะ" loading="lazy"><figcaption>เทียบหลายทางเลือกในหน้าเดียว</figcaption></figure>
+<figure><img src="d3.webp" alt="แท็บเล็ตเทียบโครงสร้างกับอาคารเสร็จ" loading="lazy"><figcaption>เห็นภาพก่อนและหลังสร้าง</figcaption></figure>
+<figure><img src="d4.webp" alt="จอแผนงานและกราฟสัดส่วนงบ" loading="lazy"><figcaption>แผนงานและสัดส่วนงบ</figcaption></figure>
+</div>
+<div class="galnav"><button class="chip" id="gp" aria-label="ภาพก่อนหน้า">‹</button><button class="chip" id="gn" aria-label="ภาพถัดไป">›</button></div>
+<p class="note">ภาพประกอบแนวคิดหน้าจอ</p>
+</div></section>
+
+<section class="band" id="eng"><div class="w">
+<h2>วิศวกรที่ทำงานให้คุณ</h2>
+<div class="ab ab3">
+<div><iframe class="whoami" src="https://www.youtube.com/embed/PLozqwUL9GE?rel=0" title="คลิปแนะนำตัว เจ้าของ fj build" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border:0"></iframe></div>
+<div>
+<h3 style="font-size:26px">บันลือ วงษ์สุวรรณ</h3>
+<p class="mu">วิศวกรโยธา ผู้ก่อตั้ง fj build · ภาคีวิศวกรโยธา เลขทะเบียน <b style="color:var(--ink)">ภย. 64050</b> ตรวจสอบได้ที่ <a href="https://service.coe.or.th/verify_license" target="_blank" rel="noopener">สภาวิศวกร (ค้นด้วยเลข 64050)</a></p>
+<div class="facts"><span>หน้างาน 10+ ปี</span><span>สนามบิน · รีสอร์ต · โรงแรม 5 ดาว</span><span>อาคารราชการ</span><span>วิลล่า + คอนโด</span></div>
+<div class="qt">"งบคือจุดเริ่มต้น ถ้างบคุณชัด คุณก็ต่ออย่างอื่นได้หมด"</div>
+<p class="mu sm">ทำงานร่วมกับทีม AI และตรวจทุกงานเองก่อนส่งถึงมือคุณ · บริการเป็นงานให้คำปรึกษา ประมาณราคา ตรวจ BOQ และวางแผน ไม่มีการเซ็นรับรองแบบหรือมอบลายเซ็นให้ผู้ใดนำไปใช้</p>
+</div>
+<div>
+<details open><summary>ต้องมีแบบก่อนไหม</summary><p>ไม่จำเป็น บริการประมาณงบสร้างบ้านและที่ดินนี้สร้างอะไรคุ้ม ใช้แค่ขนาดบ้านหรือข้อมูลที่ดิน ถ้ามีแบบแล้วจะได้ตัวเลขละเอียดขึ้น</p></details>
+<details><summary>ใช้เวลานานเท่าไร</summary><p>ประมาณงบด่วนได้ผลในประมาณ 30 นาที ตรวจราคา BOQ ประมาณ 1 ชั่วโมง งานถอดปริมาณจากแบบแจ้งกำหนดส่งในใบเสนอราคา</p></details>
+<details><summary>ข้อมูลและแบบของฉันปลอดภัยไหม</summary><p>ใช้เฉพาะงานของคุณ ไม่เปิดเผยชื่อเจ้าของหรือที่ตั้งโครงการในสื่อใดๆ</p></details>
+<details><summary>ชำระเงินช่องทางไหน</summary><p>ผ่านไลน์ทางการ @204wgewn เท่านั้น ระบบส่งการ์ดชำระเงินหลังสรุปราคา ไม่มีการขอให้โอนผ่านช่องทางอื่น</p></details>
+<div class="row" style="margin-top:20px"><a class="btn line" href="https://line.me/R/ti/p/@204wgewn">แอดไลน์ @204wgewn</a></div>
+</div>
+</div>
 </div></section>
 
 <footer><div class="w">
-<div>© 2026 แจงงบก่อนสร้าง · fj build by Engineer · ภูเก็ต · <a href="mailto:fjbuildth@gmail.com">fjbuildth@gmail.com</a></div>
-<div style="color:var(--or)">⚠️ fj build รับชำระเงินผ่านไลน์ทางการ @204wgewn เท่านั้น ไม่มีการขอให้โอนผ่านช่องทางอื่น</div>
+<div>© 2026 แจงงบก่อนสร้าง · fj build by Engineer · ภูเก็ต · fjbuildth@gmail.com</div>
+<div class="warn">fj build รับชำระเงินผ่านไลน์ทางการ @204wgewn เท่านั้น</div>
 <div><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a></div>
 </div></footer>
+
+<script>
+{const C=[['งานโครงสร้าง',28],['ผนังและฉาบ',12],['พื้นและกระเบื้อง',10],['ประตูหน้าต่าง',9],['หลังคา',8],['ประปาสุขภัณฑ์',8],['ไฟฟ้า',7],['ฝ้าและสี',7],['อื่นๆ + ดำเนินการ',11]];
+document.getElementById('cat11').innerHTML=C.map(([t,p])=>`<div class="br"><span>${t}</span><span class="t"><i style="width:${p/28*100}%"></i></span><span class="v">${p}%</span></div>`).join('');
+const tabs=[...document.querySelectorAll('[role=tab]')];
+tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on})}));
+const g=document.getElementById('gal'),step=d=>g.scrollBy({left:d*g.clientWidth*.8,behavior:'smooth'});
+document.getElementById('gp').onclick=()=>step(-1);document.getElementById('gn').onclick=()=>step(1);
+g.tabIndex=0;g.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+{
+const $=id=>document.getElementById(id);
+const fig=$('fig'),info=$('info'),sumB=document.querySelector('#sum tbody');
+const f=(n,d=2)=>Number(n).toLocaleString('th-TH',{minimumFractionDigits:d,maximumFractionDigits:d});
+// ลำดับก่อสร้างตามหน้างานจริง
+const STG=['','ฐานราก','ตอม่อ คานคอดิน ท่อใต้พื้น','เทพื้นชั้นล่าง','เสาชั้น 1 คาน พื้นชั้น 2 บันได','เสาชั้น 2 และคานหลังคา','โครงหลังคาและมุงหลังคา','ก่อผนัง หน้าบัน ท่อฝังผนัง','ฝ้า ประตูหน้าต่าง สุขภัณฑ์ โคม แอร์'];
+const CAT={
+ ftg:{t:'ฐานราก',d:'st',c:0x8f8b84,u:'ฐาน',q:'v'},
+ col:{t:'เสา/ตอม่อ',d:'st',c:0xbab5ab,u:'ต้น',q:'v'},
+ beam:{t:'คาน',d:'st',c:0xa8a296,u:'ตัว',q:'l'},
+ slab:{t:'พื้น',d:'st',c:0xcfcac1,u:'แผ่น',q:'v'},
+ stair:{t:'บันได',d:'st',c:0xc9c3b8,u:'ชุด',q:'v'},
+ rfr:{t:'โครงหลังคาเหล็ก',d:'st',c:0x7d8a99,u:'ชิ้น',q:'l'},
+ wall:{t:'ผนังก่ออิฐ',d:'ar',c:0xefe9df,u:'ช่วง',q:'a'},
+ gable:{t:'หน้าบัน/ผนังรับหลังคา',d:'ar',c:0xe7dfd0,u:'ผืน',q:'a'},
+ roof:{t:'หลังคา',d:'ar',c:0x4b5057,u:'ผืน',q:'a'},
+ door:{t:'ประตู',d:'ar',c:0x8b5e3c,u:'ชุด',q:'n'},
+ win:{t:'หน้าต่าง',d:'ar',c:0x2b2e33,u:'ชุด',q:'a'},
+ ceil:{t:'ฝ้า',d:'ar',c:0xf1efe9,u:'ชั้น',q:'a'},
+ lc:{t:'ตู้ไฟ',d:'el',c:0x9aa3ad,u:'ตู้',q:'n'},
+ elc:{t:'ท่อร้อยสายไฟ',d:'el',c:0xffcc33,u:'วงจร',q:'l'},
+ lit:{t:'ดวงโคม',d:'el',c:0xfff3d6,u:'ดวง',q:'n'},
+ wat:{t:'ท่อน้ำดี',d:'pl',c:0x2f8cff,u:'ระบบ',q:'l'},
+ sew:{t:'ท่อโสโครก/ท่ออากาศ',d:'pl',c:0x9a6a3a,u:'เส้น',q:'l'},
+ tank:{t:'ถังน้ำ/ถังบำบัด',d:'pl',c:0x5b8fa8,u:'ถัง',q:'n'},
+ san:{t:'สุขภัณฑ์',d:'pl',c:0xf6f6f6,u:'ชุด',q:'n'},
+ ac:{t:'แอร์ (FCU+CDU)',d:'ac',c:0xe3e8ec,u:'ชุด',q:'n'},
+ ref:{t:'ท่อน้ำยาแอร์',d:'ac',c:0xd07a3a,u:'เส้น',q:'l'}
+};
+const GX=['A','B','C'],GZ=['1','2','3'],xs=[0,4,8],zs=[0,5,10];
+const gx=x=>GX[xs.indexOf(x)],gz=z=>GZ[zs.indexOf(z)];
+let ok=!!(window.THREE&&THREE.OrbitControls);
+try{if(ok){const c=document.createElement('canvas');ok=!!(c.getContext('webgl')||c.getContext('experimental-webgl'))}}catch(e){ok=false}
+if(!ok){$('nogl').style.display='grid'}else{
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0d0d0d);scene.fog=new THREE.Fog(0x0d0d0d,45,95);
+const camP=new THREE.PerspectiveCamera(38,1,.1,300),camO=new THREE.OrthographicCamera(-10,10,10,-10,.1,300);let cam=camP;
+const rnd=new THREE.WebGLRenderer({antialias:true});rnd.setPixelRatio(Math.min(devicePixelRatio,2));rnd.shadowMap.enabled=true;rnd.shadowMap.type=THREE.PCFSoftShadowMap;fig.prepend(rnd.domElement);
+const ctlP=new THREE.OrbitControls(camP,rnd.domElement);ctlP.enableDamping=true;ctlP.maxPolarAngle=Math.PI*.49;ctlP.minDistance=6;ctlP.maxDistance=50;
+const ctlO=new THREE.OrbitControls(camO,rnd.domElement);ctlO.enableRotate=false;ctlO.screenSpacePanning=true;ctlO.enabled=false;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;ctlP.autoRotate=!reduce;ctlP.autoRotateSpeed=.9;
+scene.add(new THREE.HemisphereLight(0xfff8ee,0x2a2418,.8));
+const sun=new THREE.DirectionalLight(0xfff0dc,.95);sun.position.set(14,22,10);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.0004;
+Object.assign(sun.shadow.camera,{left:-16,right:16,top:16,bottom:-16});scene.add(sun);
+const gnd=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.MeshStandardMaterial({color:0x232b1f,transparent:true,opacity:.62,roughness:1}));gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
+const grid=new THREE.GridHelper(50,50,0x34392f,0x262a22);grid.position.y=.003;scene.add(grid);
+const G=new THREE.Group();G.position.set(-4,0,-5);scene.add(G);
+const lineN=new THREE.LineBasicMaterial({color:0x1b1b1b,transparent:true,opacity:.5});
+const UP=new THREE.Vector3(0,1,0);
+let ROOFY=()=>6,S=[],M=[],DECO=[],T={},RIDGE=7,DIMG=null,SELD=null,LVG=null;
+let roofType='gable',xray=true,showDim=true,plan=false,stage=8,sel=null,selCat=null;
+const disc={st:true,ar:true,el:true,pl:true,ac:true};
+
+function meta(cat,o){const m=Object.assign({cat,stage:1,lvl:0},o);M.push(m);return m}
+function mkMat(color,o={}){const m=new THREE.MeshStandardMaterial(Object.assign({color,roughness:.82,metalness:0},o));m.userData.e0=o.emissive||0;return m}
+const glassMat=()=>{const m=mkMat(0x9cc7e0,{transparent:true,opacity:.38,roughness:.05,metalness:.1});m.userData.glass=1;return m};
+function reg(me,m,edge=true){me.userData.m=m;me.castShadow=me.receiveShadow=true;if(edge)me.add(new THREE.LineSegments(new THREE.EdgesGeometry(me.geometry,25),lineN));S.push(me);return me}
+function mesh(geo,mat,parent,x,y,z){const me=new THREE.Mesh(geo,mat);me.position.set(x,y,z);(parent||G).add(me);return me}
+function box(cat,w,h,d,x,y,z,o){const m=meta(cat,Object.assign({dims:[w,d,h],vol:w*h*d},o));reg(mesh(new THREE.BoxGeometry(w,h,d),mkMat(CAT[cat].c),G,x,y,z),m);return m}
+function cyl(a,b,r,mat){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),L=d.length(),me=new THREE.Mesh(new THREE.CylinderGeometry(r,r,L,12),mat);me.position.copy(A).add(B).multiplyScalar(.5);me.quaternion.setFromUnitVectors(UP,d.normalize());G.add(me);return [me,L]}
+function bar(a,b,w,h,mat){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),L=A.distanceTo(B),fz=B.clone().sub(A).normalize();let up=new THREE.Vector3(0,1,0);if(Math.abs(fz.y)>.99)up=new THREE.Vector3(1,0,0);const fx=new THREE.Vector3().crossVectors(up,fz).normalize(),fy=new THREE.Vector3().crossVectors(fz,fx);const me=new THREE.Mesh(new THREE.BoxGeometry(w,h,L),mat);me.position.copy(A).add(B).multiplyScalar(.5);me.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(fx,fy,fz));G.add(me);return [me,L]}
+
+function build(){
+ G.traverse(n=>{if(n.geometry)n.geometry.dispose();if(n.material&&n.material!==lineN){if(n.material.map)n.material.map.dispose();n.material.dispose()}});
+ G.clear();S=[];M=[];DECO=[];sel=null;selCat=null;
+ // 1 ฐานราก
+ xs.forEach(x=>zs.forEach(z=>box('ftg',1.2,.4,1.2,x,-.8,z,{stage:1,name:`ฐานราก F1 · ${gx(x)}-${gz(z)}`,form:4*1.2*.4})));
+ // 2 ตอม่อ + คานคอดิน + ท่อใต้พื้น
+ xs.forEach(x=>zs.forEach(z=>box('col',.2,.6,.2,x,-.3,z,{stage:2,name:`ตอม่อ C1 · ${gx(x)}-${gz(z)}`,form:4*.2*.6})));
+ beams(-.2,2,0,'คานคอดิน GB1');
+ // 3 พื้นชั้นล่าง
+ box('slab',8.2,.1,10.2,4,.05,5,{stage:3,name:'พื้นชั้นล่าง วางบนดิน',area:8.2*10.2,form:0});
+ // 4 เสาชั้น 1 คาน พื้นชั้น 2 บันได
+ xs.forEach(x=>zs.forEach(z=>box('col',.2,3,.2,x,1.5,z,{stage:4,name:`เสา C1 ชั้น 1 · ${gx(x)}-${gz(z)}`,form:4*.2*3})));
+ beams(2.8,4,1,'คานชั้น 2 B1');upperSlab();stair();
+ // 5 เสาชั้น 2 คานหลังคา
+ xs.forEach(x=>zs.forEach(z=>box('col',.2,3,.2,x,4.5,z,{stage:5,lvl:1,name:`เสา C1 ชั้น 2 · ${gx(x)}-${gz(z)}`,form:4*.2*3})));
+ beams(5.8,5,1,'คานหลังคา RB1');
+ roof(roofType);walls();partitions();mep();deco();dims();
+ totals();applyAll();info.innerHTML='<h3>แตะชิ้นส่วนใดก็ได้</h3><p class="mu sm" style="margin:0">ระบบจะบอกชื่อชิ้น ตำแหน่งตามแนวเสา ขนาด และปริมาณ พร้อมเส้นบอกระยะบนโมเดล หรือแตะหมวดในตารางเพื่อดูทั้งหมวด</p>';
+}
+function beams(y,stage,lvl,nm){
+ zs.forEach(z=>{for(let i=0;i<2;i++)box('beam',3.8,.4,.2,(xs[i]+xs[i+1])/2,y,z,{stage,lvl,name:`${nm} · แนว ${gz(z)} (${GX[i]}-${GX[i+1]})`,len:3.8,form:(.2+2*.4)*3.8})});
+ xs.forEach(x=>{for(let i=0;i<2;i++)box('beam',.2,.4,4.8,x,y,(zs[i]+zs[i+1])/2,{stage,lvl,name:`${nm} · แนว ${gx(x)} (${GZ[i]}-${GZ[i+1]})`,len:4.8,form:(.2+2*.4)*4.8})});
+}
+function upperSlab(){
+ const s=new THREE.Shape();s.moveTo(-.1,.1);s.lineTo(8.1,.1);s.lineTo(8.1,-10.1);s.lineTo(-.1,-10.1);s.closePath();
+ const h=new THREE.Path();h.moveTo(6.75,-.5);h.lineTo(6.75,-4.45);h.lineTo(7.85,-4.45);h.lineTo(7.85,-.5);h.closePath();s.holes.push(h);
+ const area=8.2*10.2-1.1*3.95,m=meta('slab',{stage:4,lvl:1,name:'พื้นชั้น 2 S1 (เว้นช่องบันได)',dims:[8.2,10.2,.12],area,vol:area*.12,form:area,hole:'1.10 × 3.95 ม.'});
+ const me=mesh(new THREE.ExtrudeGeometry(s,{depth:.12,bevelEnabled:false}),mkMat(CAT.slab.c),G,0,2.88,0);me.rotation.x=-Math.PI/2;reg(me,m);
+}
+function stair(){
+ const n=16,r=2.9/n,t=.24,w=1,P=[[0,0]];
+ for(let i=0;i<n;i++){P.push([i*t,(i+1)*r]);P.push([(i+1)*t,(i+1)*r])}
+ P.push([n*t,n*r-.2]);P.push([.32,0]);
+ const s=new THREE.Shape();s.moveTo(...P[0]);P.slice(1).forEach(p=>s.lineTo(...p));s.closePath();
+ let A=0;P.forEach((p,i)=>{const q=P[(i+1)%P.length];A+=p[0]*q[1]-q[0]*p[1]});A=Math.abs(A)/2;
+ const m=meta('stair',{stage:4,lvl:0,name:'บันได ค.ส.ล. ชั้น 1 → 2 · ช่วง C-1/2',n,r,t,w,vol:A*w});
+ const me=mesh(new THREE.ExtrudeGeometry(s,{depth:w,bevelEnabled:false}),mkMat(CAT.stair.c),G,7.8,.1,.55);me.rotation.y=-Math.PI/2;reg(me,m);
+ const rm=mkMat(0x2b2e33,{metalness:.5,roughness:.4}),x=6.85,z0=.55,z1=.55+n*t;
+ reg(cyl([x,1.0,z0],[x,3.9,z1],.022,rm)[0],m,false);
+ for(let i=0;i<=n;i+=4){const z=z0+i*t+t/2,y=.1+(i+1)*r;reg(cyl([x,Math.min(y,3),z],[x,Math.min(y,3)+.9+(i===n?0:0),z],.018,rm)[0],m,false)}
+}
+// ผนัง + ช่องเปิด (ประตูเจาะจากขอบล่าง)
+function panel(cat,L,H,holes,place,o){
+ holes=holes||[];const doors=holes.filter(h=>h[4]===0).sort((a,b)=>a[3]-b[3]),wins=holes.filter(h=>h[4]>0);
+ const s=new THREE.Shape();s.moveTo(0,0);doors.forEach(([k,w,h,ox])=>{s.lineTo(ox,0);s.lineTo(ox,h);s.lineTo(ox+w,h);s.lineTo(ox+w,0)});s.lineTo(L,0);s.lineTo(L,H);s.lineTo(0,H);s.closePath();
+ let op=0;holes.forEach(h=>op+=h[1]*h[2]);
+ wins.forEach(([k,w,h,ox,oy])=>{const p=new THREE.Path();p.moveTo(ox,oy);p.lineTo(ox,oy+h);p.lineTo(ox+w,oy+h);p.lineTo(ox+w,oy);p.closePath();s.holes.push(p)});
+ const og=new THREE.Group();G.add(og);place(og);
+ const m=meta(cat,Object.assign({dims:[L,.1,H],net:L*H-op,nop:holes.length,op},o));
+ reg(mesh(new THREE.ExtrudeGeometry(s,{depth:.1,bevelEnabled:false}),mkMat(CAT[cat].c),og,0,0,0),m);
+ holes.forEach(hd=>opening(hd,og,o));return m;
+}
+const TY={win:'หน้าต่างบานเลื่อน อะลูมิเนียม',door:'ประตูทางเข้า บานเปิด ไม้',sgd:'ประตูกระจกบานเลื่อน',pd:'ประตูภายใน บานเปิด'};
+function opening([k,w,h,ox,oy],og,o){
+ const cat=k==='win'?'win':'door';
+ const m=meta(cat,{stage:8,lvl:o.lvl,name:`${TY[k]} · ${o.where||o.name}`,ow:w,oh:h,type:TY[k],area:w*h});
+ const fm=mkMat(0x2b2e33,{metalness:.35,roughness:.45}),p=.05,zc=.05;
+ const add=(W,H,x,y,mat,z=zc,D=.12)=>reg(mesh(new THREE.BoxGeometry(W,H,D),mat,og,ox+x,oy+y,z),m,false);
+ add(w,p,w/2,h-p/2,fm);add(p,h,p/2,h/2,fm);add(p,h,w-p/2,h/2,fm);
+ if(k==='win'){add(w,p,w/2,p/2,fm);add(w-2*p,h-2*p,w/2,h/2,glassMat(),zc,.012);if(w>1.1)add(p*.8,h-2*p,w/2,h/2,fm,zc+.02,.04)}
+ else if(k==='sgd'){add(w-2*p,h-p,w/2,(h-p)/2,glassMat(),zc,.012);add(p*.8,h-p,w/2,(h-p)/2,fm,zc,.06)}
+ else{const lm=mkMat(k==='pd'?0xd9ccb6:0x8b5e3c,{roughness:.6});add(w-2*p,h-p,w/2,(h-p)/2,lm,zc,.04);add(.03,.14,w-p-.12,1.0,fm,zc+.05,.04);add(.03,.14,w-p-.12,1.0,fm,zc-.05,.04)}
+}
+const SD={front:'ด้านหน้า',back:'ด้านหลัง',left:'ด้านซ้าย',right:'ด้านขวา'};
+const WD={0:{front:[[['door',1,2.1,.6,0]],[['sgd',2.4,2.2,.7,0]]],back:[[['win',.6,.6,1.2,1.6]],[['win',1.2,1,1.3,1.1]]],left:[[['win',1.2,1.2,1.8,.9]],[['win',2,1.4,1.4,.7]]],right:[[['win',.8,1.6,2,.6]],[['win',2,1.4,1.4,.7]]]},
+ 1:{front:[[['win',1.6,1.4,1.1,.8]],[['win',1.6,1.4,1.1,.8]]],back:[[['win',.6,.6,1.2,1.7]],[['win',1.2,1.2,1.3,1]]],left:[[['win',1.2,1.2,1.8,1]],[['win',1.6,1.4,1.6,.8]]],right:[[['win',.8,1.2,2,1]],[['win',1.6,1.4,1.6,.8]]]}};
+function walls(){
+ [[.1,2.5],[3,2.6]].forEach(([y0,H],lvl)=>['front','back','left','right'].forEach(sd=>{for(let i=0;i<2;i++){
+  const xside=sd==='front'||sd==='back',L=xside?3.8:4.8;
+  const where=`ผนัง${SD[sd]} ชั้น ${lvl+1} · ${xside?`แนว ${sd==='front'?'3':'1'} (${GX[i]}-${GX[i+1]})`:`แนว ${sd==='left'?'A':'C'} (${GZ[i]}-${GZ[i+1]})`}`;
+  panel('wall',L,H,WD[lvl][sd][i],og=>{if(xside)og.position.set(xs[i]+.1,y0,sd==='front'?9.95:-.05);else{og.rotation.y=-Math.PI/2;og.position.set(sd==='left'?.05:8.05,y0,zs[i]+.1)}},{stage:7,lvl,name:where,where});
+ }}));
+}
+function partitions(){
+ [[.1,2.5,0],[3,2.6,1]].forEach(([y0,H,lvl])=>{const o=n=>({stage:7,lvl,name:n,where:n});
+  panel('wall',2.3,H,[['pd',.7,2,1.4,0]],og=>og.position.set(.1,y0,2.45),o(`ผนังห้องน้ำ ชั้น ${lvl+1} · ด้านหน้าห้อง`));
+  panel('wall',2.4,H,[],og=>{og.rotation.y=-Math.PI/2;og.position.set(2.45,y0,.1)},o(`ผนังห้องน้ำ ชั้น ${lvl+1} · ด้านข้าง`));
+  if(lvl){panel('wall',7.8,H,[['pd',.8,2,2.6,0],['pd',.8,2,4.8,0]],og=>og.position.set(.1,y0,4.95),o('ผนังกั้นห้องนอน ชั้น 2 · แนว 2'));
+   panel('wall',4.8,H,[],og=>{og.rotation.y=-Math.PI/2;og.position.set(4.05,y0,5.1)},o('ผนังกั้นห้องนอน ชั้น 2 · แนว B'))}
+ });
+}
+// หลังคา
+function poly(cat,pts,o){
+ const pos=[];for(let i=1;i<pts.length-1;i++)pos.push(...pts[0],...pts[i],...pts[i+1]);
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.computeVertexNormals();
+ const v=pts.map(p=>new THREE.Vector3(...p));let A=0;for(let i=1;i<v.length-1;i++)A+=v[i].clone().sub(v[0]).cross(v[i+1].clone().sub(v[0])).length()/2;
+ reg(mesh(g,mkMat(CAT[cat].c,{side:THREE.DoubleSide,roughness:.7}),G,0,0,0),meta(cat,Object.assign({area:A},o)));
+}
+function tri(L,hgt,apex,place,o){
+ const s=new THREE.Shape();s.moveTo(0,0);s.lineTo(L,0);s.lineTo(apex,hgt);s.closePath();const og=new THREE.Group();G.add(og);place(og);
+ reg(mesh(new THREE.ExtrudeGeometry(s,{depth:.1,bevelEnabled:false}),mkMat(CAT.gable.c),og,0,0,0),meta('gable',Object.assign({area:L*hgt/2,dims:[L,.1,hgt]},o)));
+}
+function frame(list,name,size,w=.05,h=.1){ // โครงหลังคาเหล็ก: [[a,b],...]
+ const mt=mkMat(CAT.rfr.c,{metalness:.5,roughness:.45});let L=0;const m=meta('rfr',{stage:6,lvl:2,name,size});
+ list.forEach(([a,b])=>{const [me,l]=bar(a,b,w,h,mt);reg(me,m,false);L+=l});m.len=L;m.pcs=list.length;
+}
+function roof(type){
+ // ระดับ: B = หลังคานทับหลัง · จันทันวางบนคาน · แปวางบนจันทัน · แผ่นหลังคาวางบนแป
+ const B=6,ov=.8,RH=.1,PH=.075,OS=RH+PH+.02,o=n=>({stage:6,lvl:2,name:n}),og=n=>({stage:7,lvl:2,name:n});
+ const raf=[],pur=[],post=[],rb=[];
+ if(type==='gable'||type==='hip'){const p=25,t=Math.tan(p*Math.PI/180),yr=B+4*t,ye=B-ov*t,S=v=>v+OS;RIDGE=S(yr);ROOFY=type==='gable'?(x,z)=>S(B+Math.min(x,8-x)*t):(x,z)=>S(B+Math.min(4,x,8-x,z,10-z)*t);
+  const yb=x=>B+(Math.min(x,8-x))*t; // ท้องจันทันที่ตำแหน่ง x
+  if(type==='gable'){
+   poly('roof',[[-ov,S(ye),-ov],[4,S(yr),-ov],[4,S(yr),10+ov],[-ov,S(ye),10+ov]],Object.assign(o('หลังคาจั่ว ผืนซ้าย'),{pitch:p}));
+   poly('roof',[[8+ov,S(ye),-ov],[8+ov,S(ye),10+ov],[4,S(yr),10+ov],[4,S(yr),-ov]],Object.assign(o('หลังคาจั่ว ผืนขวา'),{pitch:p}));
+   tri(8,4*t,4,g=>g.position.set(0,B,9.95),og('หน้าบัน ด้านหน้า · แนว 3'));tri(8,4*t,4,g=>g.position.set(0,B,-.05),og('หน้าบัน ด้านหลัง · แนว 1'));
+   zs.forEach(z=>post.push([[4,B,z],[4,yr-RH,z]]));rb.push([[4,yr-RH/2,-ov],[4,yr-RH/2,10+ov]]);
+   for(let z=0;z<=10.001;z+=1.25){raf.push([[-ov,ye+RH/2,z],[4,yr+RH/2,z]]);raf.push([[8+ov,ye+RH/2,z],[4,yr+RH/2,z]])}
+   for(let x=-ov+.1;x<3.9;x+=.8){const y=yb(Math.max(x,0))+(x<0?x*t:0)+RH+PH/2;pur.push([[x,y,-ov],[x,y,10+ov]]);pur.push([[8-x,y,-ov],[8-x,y,10+ov]])}
+  }else{const z1=4,z2=6;
+   poly('roof',[[-ov,S(ye),-ov],[4,S(yr),z1],[4,S(yr),z2],[-ov,S(ye),10+ov]],Object.assign(o('หลังคาปั้นหยา ผืนซ้าย'),{pitch:p}));
+   poly('roof',[[8+ov,S(ye),10+ov],[4,S(yr),z2],[4,S(yr),z1],[8+ov,S(ye),-ov]],Object.assign(o('หลังคาปั้นหยา ผืนขวา'),{pitch:p}));
+   poly('roof',[[-ov,S(ye),10+ov],[4,S(yr),z2],[8+ov,S(ye),10+ov]],Object.assign(o('หลังคาปั้นหยา ผืนหน้า'),{pitch:p}));
+   poly('roof',[[8+ov,S(ye),-ov],[4,S(yr),z1],[-ov,S(ye),-ov]],Object.assign(o('หลังคาปั้นหยา ผืนหลัง'),{pitch:p}));
+   post.push([[4,B,5],[4,yr-RH,5]]);rb.push([[4,yr-RH/2,z1],[4,yr-RH/2,z2]]);
+   [[-ov,-ov,4,z1],[8+ov,-ov,4,z1],[-ov,10+ov,4,z2],[8+ov,10+ov,4,z2]].forEach(([x0,z0,x1,z1_])=>rb.push([[x0,ye+RH/2,z0],[x1,yr+RH/2,z1_]]));
+   for(let z=0;z<=10.001;z+=1.25){const run=Math.min(4.8,Math.min(z,10-z)+ov);if(run<.4)continue;raf.push([[-ov,ye+RH/2,z],[-ov+run,ye+run*t+RH/2,z]]);raf.push([[8+ov,ye+RH/2,z],[8+ov-run,ye+run*t+RH/2,z]])}
+   for(let x=1.25;x<=6.76;x+=1.25){const run=Math.min(4.8,Math.min(x,8-x)+ov);raf.push([[x,ye+RH/2,10+ov],[x,ye+run*t+RH/2,10+ov-run]]);raf.push([[x,ye+RH/2,-ov],[x,ye+run*t+RH/2,-ov+run]])}
+  }
+ }else if(type==='shed'){const p=10,t=Math.tan(p*Math.PI/180),yAt=z=>B+(10-z)*t,S=v=>v+OS;RIDGE=S(yAt(-ov));ROOFY=(x,z)=>S(yAt(z));
+  poly('roof',[[-ov,S(yAt(10+ov)),10+ov],[8+ov,S(yAt(10+ov)),10+ov],[8+ov,S(yAt(-ov)),-ov],[-ov,S(yAt(-ov)),-ov]],Object.assign(o('หลังคาเพิงหมาแหงน'),{pitch:p}));
+  tri(10,10*t,0,g=>{g.rotation.y=-Math.PI/2;g.position.set(.05,B,0)},og('ผนังรับหลังคา ด้านซ้าย · แนว A'));
+  tri(10,10*t,0,g=>{g.rotation.y=-Math.PI/2;g.position.set(8.05,B,0)},og('ผนังรับหลังคา ด้านขวา · แนว C'));
+  panel('gable',8,10*t,[],g=>g.position.set(0,B,-.05),og('ผนังรับหลังคา ด้านหลัง · แนว 1'));
+  [5,0].forEach(z=>{const top=yAt(z);xs.forEach(x=>post.push([[x,B,z],[x,top-RH,z]]));rb.push([[-.1,top-RH/2,z],[8.1,top-RH/2,z]])});
+  for(let x=0;x<=8.001;x+=1)raf.push([[x,yAt(10+ov)+RH/2,10+ov],[x,yAt(-ov)+RH/2,-ov]]);
+  for(let z=10+ov-.1;z>-ov;z-=.8){const y=yAt(z)+RH+PH/2;pur.push([[-ov,y,z],[8+ov,y,z]])}
+ }else{RIDGE=B+.9;ROOFY=()=>B;
+  box('slab',8.2,.12,10.2,4,5.94,5,{stage:6,lvl:2,name:'พื้นดาดฟ้า ค.ส.ล. (ทำกันซึม)',area:8.2*10.2,vol:8.2*.12*10.2,form:8.2*10.2});
+  panel('wall',8.2,.9,[],g=>g.position.set(-.1,B,9.95),og('ผนังกันตกดาดฟ้า ด้านหน้า'));panel('wall',8.2,.9,[],g=>g.position.set(-.1,B,-.05),og('ผนังกันตกดาดฟ้า ด้านหลัง'));
+  panel('wall',10,.9,[],g=>{g.rotation.y=-Math.PI/2;g.position.set(.05,B,0)},og('ผนังกันตกดาดฟ้า ด้านซ้าย'));panel('wall',10,.9,[],g=>{g.rotation.y=-Math.PI/2;g.position.set(8.05,B,0)},og('ผนังกันตกดาดฟ้า ด้านขวา'));
+  return;
+ }
+ if(post.length)frame(post,type==='shed'?'เสาดั้งเหล็ก □100×100×3.2 (รับคานหลังคา)':'เสาดั้งเหล็ก □100×100×3.2','□100×100×3.2',.1,.1);
+ frame(rb,type==='hip'?'อกไก่ + ตะเฆ่สัน เหล็ก 2C 100×50×20×2.3':type==='shed'?'คานรับจันทัน เหล็ก 2C 125×50×20×3.2':'อกไก่ เหล็ก 2C 100×50×20×2.3','2C 100×50',.1,.1);
+ frame(raf,'จันทันเหล็ก C 100×50×20×2.3 @'+(type==='shed'?'1.00':'1.25')+' ม.','C 100×50×20×2.3',.05,RH);
+ if(pur.length)frame(pur,'แปเหล็ก C 75×45×15×2.3 @0.80 ม.','C 75×45×15×2.3',.045,PH);
+}
+
+// งานระบบ
+function run(cat,lines,r,o){
+ const mat=mkMat(CAT[cat].c,{roughness:.5,metalness:.15}),m=meta(cat,Object.assign({stage:7},o));let L=0,el=0;
+ m.lvl=lines.flat().every(p=>p[1]<2.9)?0:1;
+ lines.forEach(pts=>{for(let i=0;i<pts.length-1;i++){const [me,l]=cyl(pts[i],pts[i+1],r,mat);reg(me,m,false);L+=l}
+  for(let i=1;i<pts.length-1;i++){reg(mesh(new THREE.SphereGeometry(r*1.3,10,8),mat,G,...pts[i]),m,false);el++}});
+ m.len=L;m.elb=el;return m;
+}
+function mep(){
+ // ทุกท่อแนวดิ่งฝังในความหนาผนัง (ผนังหนา 0.10 ม.) · ลอดพื้นข้างคานด้วยปลอก · แนวนอนเดินเหนือฝ้า ใต้ท้องคาน
+ const ELT=' (ฝังผนัง / เหนือฝ้า)';
+ run('sew',[[[1.6,-.45,.3],[2.2,-.45,.3],[2.2,-.45,.2]],[[2.2,-.45,.2],[2.2,-.45,-2.0]]],.055,{stage:2,name:'ท่อโสโครกใต้พื้น → ถังบำบัด',dia:'Ø4 นิ้ว',note:'วางก่อนเทพื้นชั้นล่าง ลาดเอียง 1:50'});
+ const st=meta('tank',{stage:2,lvl:0,name:'ถังบำบัดน้ำเสียสำเร็จรูป (ฝังดิน)'});reg(mesh(new THREE.CylinderGeometry(.6,.6,1.3,24),mkMat(0x4f6f7d),G,2.2,-.75,-2.6),st);
+ // ช่องท่อในห้องน้ำ (ผนังบังท่อ) ทั้ง 2 ชั้น
+ [[.1,2.5,0],[3,2.6,1]].forEach(([y0,H,lvl])=>{const n=`ช่องท่อห้องน้ำ ชั้น ${lvl+1}`,o={stage:7,lvl,name:n,where:n};
+  panel('wall',.4,H,[],g=>g.position.set(1.95,y0,.4),o);panel('wall',.35,H,[],g=>{g.rotation.y=-Math.PI/2;g.position.set(2.0,y0,.05)},o)});
+ run('sew',[[[1.6,.1,.3],[1.6,-.45,.3]],[[1.6,3.0,.3],[1.6,2.8,.3],[2.2,2.8,.3],[2.2,2.8,.2]],[[2.2,2.8,.2],[2.2,-.45,.2]]],.055,{name:'ท่อโสโครก ส้วม ชั้น 1-2 (ในช่องท่อ)',dia:'Ø4 นิ้ว',note:'แนวดิ่งอยู่ในช่องท่อ ลอดพื้นด้วยปลอก'});
+ run('sew',[[[2.2,2.8,.2],[2.2,ROOFY(2.2,.2)+.3,.2]]],.025,{name:'ท่ออากาศ (ในช่องท่อ)',dia:'Ø2 นิ้ว'});
+ run('wat',[[[4.05,.3,-1.8],[1,.3,-1.8],[1,.3,0]],[[1,.3,0],[1,2.55,0],[1,2.55,.18],[1,3.25,.18],[1,3.25,0],[1,3.45,0]],
+   [[1,.55,0],[1.45,.55,0],[1.45,.55,.09]],[[1,.55,0],[.6,.55,0],[.6,.55,.09]],[[1,3.45,0],[1.45,3.45,0],[1.45,3.45,.09]],[[1,3.45,0],[.6,3.45,0],[.6,3.45,.09]]],
+   .02,{name:'ท่อน้ำดี'+' (ฝังผนังห้องน้ำ)',dia:'Ø¾ นิ้ว (เมน) · Ø½ นิ้ว (แยก)',note:'ลอดพื้นชั้น 2 ข้างคานด้วยปลอก'});
+ run('elc',[[[0,1.75,6.6],[0,2.55,6.6],[.25,2.55,6.6],[.25,2.55,7.5],[6,2.55,7.5]],[[4.5,2.55,7.5],[4.5,2.55,2.5]],[[.25,2.55,6.6],[.25,2.55,1.25],[1.2,2.55,1.25]],[[2,2.55,7.5],[2,2.55,10],[2,1.3,10]]],.016,{name:'ท่อร้อยสาย วงจรแสงสว่าง ชั้น 1'+ELT,dia:'Ø½ นิ้ว',note:'มีท่อลงสวิตช์ในผนังหน้าบ้าน'});
+ run('elc',[[[.25,2.55,6.6],[.2,2.55,6.6],[.2,3.25,6.6],[0,3.25,6.6],[0,5.55,6.6],[.25,5.55,6.6],[.25,5.55,7.5],[6,5.55,7.5]],[[4.5,5.55,7.5],[4.5,5.55,2.5]],[[.25,5.55,6.6],[.25,5.55,1.25],[1.2,5.55,1.25]],[[2,5.55,7.5],[2,5.55,5],[2,4.3,5]]],.016,{name:'ท่อร้อยสาย วงจรแสงสว่าง ชั้น 2'+ELT,dia:'Ø½ นิ้ว',note:'ลอดพื้นข้างคานด้วยปลอก · ท่อลงสวิตช์ในผนังห้องนอน'});
+ run('ref',[[[.06,2.2,7.85],[-.12,2.2,7.85],[-.12,.45,7.85],[-.32,.45,7.85]]],.014,{name:'ท่อน้ำยาแอร์ ชุดที่ 1',dia:'ท่อทองแดงหุ้มฉนวน ในรางครอบท่อ'});
+ run('ref',[[[.06,5.2,8.05],[-.12,5.2,8.05],[-.12,.45,8.05],[-.12,.45,8.6],[-.32,.45,8.6]]],.014,{name:'ท่อน้ำยาแอร์ ชุดที่ 2',dia:'ท่อทองแดงหุ้มฉนวน ในรางครอบท่อ'});
+ // งานติดตั้ง / ฝ้า
+ ceiling(2.5,0);ceiling(5.5,1);
+ box('lc',.1,.45,.35,.11,1.5,6.6,{stage:8,name:'ตู้ไฟ Load Center ชั้น 1'});
+ [[2,1.3,9.93,'ห้องนั่งเล่น',0],[2,4.3,5.07,'ห้องนอน 1',1]].forEach(([x,y,z,rm,l])=>box('lc',.08,.12,.04,x,y,z,{stage:8,lvl:l,name:'สวิตช์ไฟ · '+rm}));
+ [[2,2.47,7.5,'ห้องนั่งเล่น'],[6,2.47,7.5,'ห้องนั่งเล่น'],[4.5,2.47,2.5,'ครัว/ทานอาหาร'],[1.2,2.47,1.25,'ห้องน้ำ ชั้น 1'],[2,5.47,7.5,'ห้องนอน 1'],[6,5.47,7.5,'ห้องนอน 2'],[4.5,5.47,2.5,'โถงชั้น 2'],[1.2,5.47,1.25,'ห้องน้ำ ชั้น 2']]
+  .forEach(([x,y,z,rm])=>reg(mesh(new THREE.CylinderGeometry(.13,.13,.04,20),mkMat(CAT.lit.c,{emissive:0x7a6a44}),G,x,y,z),meta('lit',{stage:8,lvl:y<3?0:1,name:'โคมดาวน์ไลท์ฝังฝ้า · '+rm}),false));
+ [[.1,0],[3,1]].forEach(([y0,lvl])=>{const m=meta('san',{stage:8,lvl,name:`สุขภัณฑ์ห้องน้ำ ชั้น ${lvl+1} (โถส้วม + อ่างล้างหน้า)`}),wm=mkMat(CAT.san.c,{roughness:.3});
+  reg(mesh(new THREE.BoxGeometry(.38,.4,.5),wm,G,1.6,y0+.2,.42),m);reg(mesh(new THREE.BoxGeometry(.42,.38,.18),wm,G,1.6,y0+.6,.14),m);reg(mesh(new THREE.BoxGeometry(.5,.16,.4),wm,G,.6,y0+.8,.25),m)});
+ const wt=meta('tank',{stage:8,lvl:0,name:'ถังเก็บน้ำ + ปั๊มน้ำ'});reg(mesh(new THREE.CylinderGeometry(.45,.45,1.2,24),mkMat(0x5b8fa8),G,4.5,.6,-1.8),wt);reg(mesh(new THREE.BoxGeometry(.4,.3,.3),mkMat(0x2d5f7a),G,3.85,.15,-1.8),wt);
+ [[2.25,7.5,-.5,7.5,1,'ห้องนั่งเล่น ชั้น 1'],[5.25,7.5,-.5,8.6,2,'ห้องนอน 1 ชั้น 2']].forEach(([y,z,cx,cz,i,rm])=>{const m=meta('ac',{stage:8,lvl:y<3?0:1,name:`แอร์ชุดที่ ${i} · ${rm}`}),am=mkMat(CAT.ac.c,{roughness:.4});
+  reg(mesh(new THREE.BoxGeometry(.22,.3,.9),am,G,.17,y,z),m);reg(mesh(new THREE.BoxGeometry(.35,.6,.8),mkMat(0xbfc6cc),G,cx,.32,cz),m)});
+}
+function ceiling(y,lvl){
+ const s=new THREE.Shape();s.moveTo(.1,-.1);s.lineTo(7.9,-.1);s.lineTo(7.9,-9.9);s.lineTo(.1,-9.9);s.closePath();let A=7.8*9.8;
+ if(!lvl){const h=new THREE.Path();h.moveTo(6.75,-.5);h.lineTo(6.75,-4.45);h.lineTo(7.85,-4.45);h.lineTo(7.85,-.5);h.closePath();s.holes.push(h);A-=1.1*3.95}
+ const me=mesh(new THREE.ExtrudeGeometry(s,{depth:.012,bevelEnabled:false}),mkMat(CAT.ceil.c),G,0,y,0);me.rotation.x=-Math.PI/2;
+ reg(me,meta('ceil',{stage:8,lvl:lvl,name:`ฝ้ายิปซัมบอร์ด ชั้น ${lvl+1} · สูง ${f(y-(lvl?3:.1))} ม. จากพื้น`,area:A}));
+}
+
+function deco(){
+ const dm=c=>new THREE.MeshStandardMaterial({color:c,roughness:.9});
+ const d=(geo,c,x,y,z,st)=>{const me=mesh(geo,dm(c),G,x,y,z);me.castShadow=me.receiveShadow=true;me.userData.deco=st;DECO.push(me);return me};
+ d(new THREE.BoxGeometry(8.4,.12,2.2),0x8d887f,4,.06,11.2,8);d(new THREE.BoxGeometry(4.6,.1,1.4),0x3a3d42,2.1,2.72,10.75,8);
+ [[-4.6,6.5,1],[12.6,3.5,1.15],[-2.8,-2.4,.9],[10.8,-1.5,.8]].forEach(([x,z,s])=>{d(new THREE.CylinderGeometry(.1*s,.14*s,1.6*s,8),0x5a4030,x,.8*s,z,0);d(new THREE.SphereGeometry(1.05*s,14,10),0x4b7744,x,2.3*s,z,0);d(new THREE.SphereGeometry(.75*s,12,8),0x5a8a50,x+.4*s,2.9*s,z-.2*s,0)});
+}
+// เส้นบอกระยะ
+const dmat=new THREE.LineBasicMaterial({color:0xffb066,depthTest:false,transparent:true}),smat=new THREE.LineBasicMaterial({color:0xffffff,depthTest:false,transparent:true});
+const gmat=new THREE.LineDashedMaterial({color:0x8a8a8a,dashSize:.3,gapSize:.2,depthTest:false,transparent:true,opacity:.7});
+function rr(x,w,h,r){x.beginPath();x.moveTo(r,0);x.lineTo(w-r,0);x.quadraticCurveTo(w,0,w,r);x.lineTo(w,h-r);x.quadraticCurveTo(w,h,w-r,h);x.lineTo(r,h);x.quadraticCurveTo(0,h,0,h-r);x.lineTo(0,r);x.quadraticCurveTo(0,0,r,0);x.closePath()}
+function label(txt,col='#ffb066',bg='rgba(12,12,12,.85)',hh=.4,round=false){
+ const c=document.createElement('canvas'),x=c.getContext('2d'),fs=44,font=`600 ${fs}px Sarabun, sans-serif`;x.font=font;
+ const w=round?64:Math.ceil(x.measureText(txt).width)+26;c.width=w;c.height=64;x.font=font;
+ if(round){x.beginPath();x.arc(32,32,29,0,7);x.fillStyle=bg;x.fill();x.lineWidth=3;x.strokeStyle=col;x.stroke()}else{rr(x,w,64,14);x.fillStyle=bg;x.fill()}
+ x.fillStyle=col;x.textAlign='center';x.textBaseline='middle';x.fillText(txt,w/2,35);
+ const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false,transparent:true}));sp.scale.set(hh*w/64,hh,1);sp.renderOrder=999;return sp;
+}
+function seg(pairs,grp,mat){const g=new THREE.BufferGeometry().setFromPoints(pairs.flat().map(p=>new THREE.Vector3(...p)));const l=new THREE.LineSegments(g,mat);if(mat===gmat)l.computeLineDistances();l.renderOrder=998;grp.add(l)}
+function dim(a,b,txt,tk,grp,mat=dmat,col,bg){
+ const m=(p,s)=>[p[0]+s*tk[0],p[1]+s*tk[1],p[2]+s*tk[2]];seg([[a,b],[m(a,-1),m(a,1)],[m(b,-1),m(b,1)]],grp,mat);
+ const sp=label(txt,col,bg);sp.position.set((a[0]+b[0])/2,(a[1]+b[1])/2+.22,(a[2]+b[2])/2);grp.add(sp);
+}
+function dims(){
+ DIMG=new THREE.Group();G.add(DIMG);SELD=new THREE.Group();G.add(SELD);const y=.03,tk=[.13,0,.13];
+ xs.forEach(x=>{seg([[[x,.02,-1.6],[x,.02,13.6]]],DIMG,gmat);const b=label(gx(x),'#ffffff','rgba(12,12,12,.85)',.62,true);b.position.set(x,.05,-2.1);DIMG.add(b)});
+ zs.forEach(z=>{seg([[[-1.6,.02,z],[10.9,.02,z]]],DIMG,gmat);const b=label(gz(z),'#ffffff','rgba(12,12,12,.85)',.62,true);b.position.set(-2.1,.05,z);DIMG.add(b)});
+ dim([0,y,12.7],[4,y,12.7],'4.00',tk,DIMG);dim([4,y,12.7],[8,y,12.7],'4.00',tk,DIMG);dim([0,y,13.4],[8,y,13.4],'8.00',tk,DIMG);
+ dim([9.4,y,0],[9.4,y,5],'5.00',tk,DIMG);dim([9.4,y,5],[9.4,y,10],'5.00',tk,DIMG);dim([10.1,y,0],[10.1,y,10],'10.00',tk,DIMG);
+ LVG=new THREE.Group();DIMG.add(LVG);const lx=-1.3,lz=11.6,lv=[[0,'±0.00'],[3,'+3.00'],[6,'+6.00'],[RIDGE,(roofType==='flat'?'กันตก +':'สูงสุด +')+RIDGE.toFixed(2)]];
+ seg([[[lx,0,lz],[lx,RIDGE,lz]]],LVG,dmat);lv.forEach(([v,t])=>{seg([[[lx-.25,v,lz],[lx+.25,v,lz]]],LVG,dmat);const s=label('▽ '+t);s.position.set(lx-1.1,v+.2,lz);LVG.add(s)});
+}
+function selDims(m){
+ SELD.clear();const b=new THREE.Box3();S.forEach(me=>{if(me.userData.m===m)b.expandByObject(me)});if(b.isEmpty())return;
+ b.min.sub(G.position);b.max.sub(G.position);const {min:a,max:c}=b,o=.3,tk=[.09,0,.09],tv=[.09,.09,0];
+ const dx=c.x-a.x,dz=c.z-a.z,dy=c.y-a.y,W='#141414',BG='rgba(255,138,31,.95)';
+ const sm=[];if(dx>=.5)dim([a.x,a.y,c.z+o],[c.x,a.y,c.z+o],f(dx),tk,SELD,smat,W,BG);else if(dx>.04)sm.push(f(dx));
+ if(dz>=.5)dim([c.x+o,a.y,a.z],[c.x+o,a.y,c.z],f(dz),tk,SELD,smat,W,BG);else if(dz>.04)sm.push(f(dz));
+ if(dy>=.5)dim([c.x+o,a.y,c.z+o],[c.x+o,c.y,c.z+o],f(dy),tv,SELD,smat,W,BG);else if(dy>.04)sm.push(f(dy));
+ if(sm.length){const sp=label((sm.length===1?'หนา ':'หน้าตัด ')+sm.join(' × '),W,BG);sp.position.set(c.x+o+.6,c.y+.45,c.z+o+.6);SELD.add(sp)}
+}
+// แสดงผล
+const XR={wall:.14,gable:.14,roof:.2,slab:.42,ceil:.1};
+function applyAll(){
+ lineN.color.setHex(xray?0xc8c8c8:0x1b1b1b);lineN.opacity=xray?.26:.5;
+ S.forEach(me=>{const m=me.userData.m,mt=me.material,op=xray&&XR[m.cat]?XR[m.cat]:1;
+  if(!mt.userData.glass){mt.transparent=op<1;mt.opacity=op;mt.depthWrite=op>=1;mt.needsUpdate=true}
+  me.castShadow=op>=1;me.visible=m.stage<=stage&&disc[CAT[m.cat].d]&&(!plan||m.lvl===0)});
+ DECO.forEach(d=>d.visible=d.userData.deco<=stage&&!plan);
+ DIMG.visible=showDim;LVG.visible=!plan;SELD.visible=!!sel;table();paint();
+}
+function totals(){T={};M.forEach(m=>{const t=T[m.cat]=T[m.cat]||{n:0,v:0,a:0,l:0};t.n++;t.v+=m.vol||0;t.a+=m.net!=null?m.net:(m.area||0);t.l+=m.len||0})}
+const qty=c=>{const t=T[c],q=CAT[c].q;return q==='v'?f(t.v)+' ลบ.ม.':q==='l'?f(t.l,1)+' ม.':q==='a'?f(t.a,1)+' ตร.ม.':'–'};
+const hex=c=>'#'+c.toString(16).padStart(6,'0');
+function table(){sumB.innerHTML=Object.keys(CAT).filter(c=>T[c]&&disc[CAT[c].d]).map(c=>`<tr data-c="${c}" tabindex="0"><td><span class="sw" style="background:${hex(CAT[c].c)}"></span>${CAT[c].t}</td><td class="n">${T[c].n} ${CAT[c].u}</td><td class="n">${qty(c)}</td></tr>`).join('')}
+function paint(){S.forEach(me=>{const m=me.userData.m,e=m===sel?0x9a4200:(m.cat===selCat?0x5a2800:(me.material.userData.e0||0));me.material.emissive.setHex(e)});
+ document.querySelectorAll('#sum tr[data-c]').forEach(r=>r.classList.toggle('on',r.dataset.c===selCat))}
+const row=(k,v)=>`<dt>${k}</dt><dd>${v}</dd>`;
+function show(m){const c=CAT[m.cat];let h='<h3></h3><dl>';
+ if(m.cat==='wall'||m.cat==='gable'&&m.net!=null){h+=row('ยาว × สูง',f(m.dims[0])+' × '+f(m.dims[2])+' ม.')+row('ช่องเปิด',m.nop?`${m.nop} ช่อง · ${f(m.op)} ตร.ม.`:'ไม่มี')+row('พื้นที่สุทธิ',f(m.net)+' ตร.ม.')}
+ else if(m.cat==='gable'){h+=row('ฐาน × สูง',f(m.dims[0])+' × '+f(m.dims[2])+' ม.')+row('พื้นที่',f(m.area)+' ตร.ม.')}
+ else if(m.cat==='roof'){h+=row('ความชัน',m.pitch+'°')+row('พื้นที่ตามลาด',f(m.area)+' ตร.ม.')}
+ else if(m.cat==='door'||m.cat==='win'){h+=row('ชนิด',m.type)+row('กว้าง × สูง',f(m.ow)+' × '+f(m.oh)+' ม.')+row('พื้นที่ช่องเปิด',f(m.area)+' ตร.ม.')}
+ else if(m.cat==='stair'){h+=row('ลูกตั้ง',`${m.n} ขั้น × ${f(m.r,3)} ม.`)+row('ลูกนอน',f(m.t)+' ม.')+row('ความกว้าง',f(m.w)+' ม.')+row('คอนกรีต',f(m.vol,3)+' ลบ.ม.')}
+ else if(m.cat==='rfr'){h+=row('หน้าตัด',m.size)+row('จำนวน',m.pcs+' ท่อน')+row('ยาวรวม',f(m.len)+' ม.')}
+ else if(m.dia){h+=row('ขนาด',m.dia)+row('ยาวรวม',f(m.len)+' ม.')+row('ข้อต่อ/ข้องอ',m.elb+' จุด');if(m.note)h+=row('หมายเหตุ',m.note)}
+ else if(m.dims){h+=row('กว้าง × ลึก × สูง',m.dims.map(v=>f(v)).join(' × ')+' ม.');if(m.vol)h+=row('คอนกรีต',f(m.vol,3)+' ลบ.ม.');if(m.form)h+=row('ไม้แบบ',f(m.form)+' ตร.ม.');if(m.hole)h+=row('ช่องบันได',m.hole);if(m.len)h+=row('ยาว',f(m.len)+' ม.')}
+ h+=row('ขั้นก่อสร้าง',m.stage+' · '+STG[m.stage]);
+ h+=`</dl><p class="note">หมวด${c.t}ทั้งหมด ${T[m.cat].n} ${c.u}${CAT[m.cat].q!=='n'?' · '+qty(m.cat):''}</p>`;
+ info.innerHTML=h;info.querySelector('h3').textContent=m.name;
+}
+function showCat(c){const t=T[c],k=CAT[c];info.innerHTML=`<h3></h3><dl>${row('จำนวน',t.n+' '+k.u)}${k.q!=='n'?row('ปริมาณรวม',qty(c)):''}${c==='beam'||c==='col'?row('คอนกรีต',f(t.v,2)+' ลบ.ม.'):''}</dl><p class="note">ชิ้นที่ไฮไลต์สีส้มคือทั้งหมดในหมวดนี้</p>`;info.querySelector('h3').textContent='หมวด'+k.t}
+sumB.addEventListener('click',e=>{const r=e.target.closest('tr[data-c]');if(!r)return;sel=null;SELD.clear();selCat=selCat===r.dataset.c?null:r.dataset.c;paint();if(selCat)showCat(selCat)});
+sumB.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.target.click()}});
+const ray=new THREE.Raycaster(),pt=new THREE.Vector2();let down=null;
+rnd.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];stopRot()});
+rnd.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;
+ const r=rnd.domElement.getBoundingClientRect();pt.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(pt,cam);
+ const hit=ray.intersectObjects(S.filter(m=>m.visible),false)[0];selCat=null;sel=hit?hit.object.userData.m:null;paint();
+ if(sel){show(sel);selDims(sel);SELD.visible=true}else{SELD.clear()}});
+const bRot=$('bRot'),bPlan=$('bPlan'),bXr=$('bXr'),bDim=$('bDim'),st=$('st'),stName=$('stName');
+function stopRot(){ctlP.autoRotate=false;bRot.setAttribute('aria-pressed','false')}
+bRot.onclick=()=>{ctlP.autoRotate=!ctlP.autoRotate;bRot.setAttribute('aria-pressed',ctlP.autoRotate)};
+bXr.onclick=()=>{xray=!xray;bXr.setAttribute('aria-pressed',xray);applyAll()};
+bDim.onclick=()=>{showDim=!showDim;bDim.setAttribute('aria-pressed',showDim);applyAll()};
+const home=()=>{camP.position.set(17.5,12.5,21);ctlP.target.set(-1,3,.6);ctlP.update()};
+function setPlan(v){plan=v;bPlan.setAttribute('aria-pressed',v);cam=v?camO:camP;sun.castShadow=!v;ctlP.enabled=!v;ctlO.enabled=v;
+ if(v){stopRot();camO.position.set(.6,40,1.4);camO.zoom=1;ctlO.target.set(.6,0,1.4);camO.updateProjectionMatrix();ctlO.update()}
+ $('hint').textContent=v?'แปลนชั้น 1 มองจากบน · ลากเพื่อเลื่อน · ซูมได้ · แตะชิ้นส่วนเพื่อดูขนาด':'ลากเพื่อหมุน · ซูมด้วยล้อเมาส์หรือสองนิ้ว · แตะชิ้นส่วนเพื่อดูขนาด';applyAll()}
+bPlan.onclick=()=>setPlan(!plan);
+$('bReset').onclick=()=>{setPlan(false);home()};
+st.oninput=()=>{stage=+st.value;stName.textContent=st.value+' · '+STG[stage];applyAll()};
+document.querySelectorAll('#roofSeg button').forEach(b=>b.onclick=()=>{roofType=b.dataset.r;document.querySelectorAll('#roofSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));build()});
+document.querySelectorAll('#disc input').forEach(i=>i.onchange=()=>{disc[i.value]=i.checked;sel=null;SELD&&SELD.clear();applyAll()});
+stName.textContent=stage+' · '+STG[stage];home();
+const go=()=>build();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go,go);
+const ro=new ResizeObserver(()=>{const w=fig.clientWidth,h=fig.clientHeight,a=w/h,v=10.5;rnd.setSize(w,h,false);camP.aspect=a;camP.updateProjectionMatrix();Object.assign(camO,{left:-v*a,right:v*a,top:v,bottom:-v});camO.updateProjectionMatrix()});ro.observe(fig);
+(function loop(){requestAnimationFrame(loop);(plan?ctlO:ctlP).update();if(DIMG)rnd.render(scene,cam)})();
+}
+}
+</script>
 </body>
 </html>
