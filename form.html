@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>fj build · ฟอร์มข้อมูล</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: friendly, calm, one question at a time, like a helpful counter clerk
+   IDEA: a LINE-sized card stack; each card = one question
+   PICTURE: the form itself, phone-width, progress bar on top
+   COLOUR/TYPE: fj build teal #0F6E56, mint #E1F5EE, white; Prompt
+   LAYOUT: one column max 440px, big tap targets, sticky next button */
+:root{color-scheme:light dark;--wallL:light-dark(#9FE1CB,#1d6a55);--wallR:light-dark(#5DCAA5,#0F6E56);--roof:light-dark(#E1F5EE,#2a8f70);--edge:light-dark(#085041,#bfe9da);--land:light-dark(#eef3e4,#1f2a1c);--landline:light-dark(#97C459,#4b6b2a);--bg:light-dark(#f3f6f4,#0e1513);--card:light-dark(#fff,#16211e);--ink:light-dark(#14211d,#e8f1ee);--mute:light-dark(#5d6b66,#9fb1aa);--line:light-dark(#d9e3df,#2a3a35);--t:#0F6E56;--mint:light-dark(#E1F5EE,#123a30);--mintink:light-dark(#085041,#bfe9da);--warn:light-dark(#fdf1dc,#3a2c10);--warnink:light-dark(#7a4a05,#f3cd8a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Prompt,"Noto Sans Thai",system-ui,sans-serif}
+.wrap{max-width:440px;margin:0 auto;padding:16px 16px 120px}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.pick button{font-size:14px;min-height:44px;padding:8px 10px}
+.note{font-size:13px;color:var(--mute);margin:0 0 12px}
+.top{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.bar{height:6px;background:var(--line);border-radius:3px;margin:6px 0 18px;overflow:hidden}.bar i{display:block;height:100%;background:var(--t);border-radius:3px;transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px}
+h1{font-size:22px;line-height:1.25;margin:0 0 6px;font-weight:600}
+.legend{font-size:13px;color:var(--mute);margin:0 0 10px}
+.hint{font-size:14px;color:var(--mute);margin:0 0 16px}
+.opts{display:grid;gap:10px}.opts.g2{grid-template-columns:1fr 1fr}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-height:52px;cursor:pointer}
+.opt small{display:block;font-size:13px;color:var(--mute)}
+.opt.on{border-color:var(--t);background:var(--mint);color:var(--mintink)}.opt.on small{color:var(--mintink)}
+.opt:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #5DCAA5;outline-offset:2px}
+select,input[type=text],input[type=number]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-height:50px}
+.req{color:#e5484d;margin-left:3px;font-weight:600}
+.pricebar{display:none;justify-content:space-between;align-items:center;background:var(--mint);color:var(--mintink);border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:14px}.pricebar b{font-size:20px}
+.prow{display:flex;justify-content:space-between;gap:8px;padding:3px 0}.prow.promo{color:#D85A30;font-weight:600}.prow.tot{font-size:22px;font-weight:600;border-top:1px solid currentColor;margin-top:4px;padding-top:6px}
+.big{font-size:26px;font-weight:600;display:block;margin:4px 0}
+.lab{font-size:14px;font-weight:500;margin:16px 0 8px}.lab small{font-weight:400;color:var(--mute)}.tiny{font-size:13px;color:var(--mute);margin:6px 0 0;min-height:1em}
+.opts.g5{grid-template-columns:repeat(5,minmax(0,1fr))}.opt.c,input.c{text-align:center;padding:10px 4px}
+.bim{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}.bim svg{display:block;width:100%;height:auto}.dim{font-size:11px;fill:var(--mute)}
+.wl{display:flex;align-items:center;gap:8px}.wl span{color:var(--mute)}
+.or{text-align:center;font-size:13px;color:var(--mute);margin:12px 0}
+.row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.step{display:flex;align-items:center;gap:10px}.step button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:20px;cursor:pointer}.step b{min-width:24px;text-align:center}
+.file{display:block;border:1.5px dashed var(--t);border-radius:12px;padding:18px;text-align:center;color:var(--mintink);background:var(--mint);cursor:pointer}
+.file input{display:none}
+.warn{background:var(--warn);color:var(--warnink);border-radius:12px;padding:12px 14px;font-size:14px;margin-top:14px}
+.sum .row span:first-child{color:var(--mute);font-size:14px}.sum .row span:last-child{text-align:right;font-weight:500}
+.edit{font:inherit;font-size:13px;color:var(--t);background:none;border:0;padding:0 0 0 8px;cursor:pointer;text-decoration:underline}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.nav div{max-width:440px;margin:0 auto;display:flex;gap:10px}
+.btn{flex:1;font:inherit;font-weight:500;min-height:50px;border-radius:12px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.btn.pri{background:var(--t);border-color:var(--t);color:#fff;flex:2}
+.err{color:#c0392b;font-size:14px;margin-top:10px;min-height:1em}
+.done{text-align:center}.done .ok{width:64px;height:64px;border-radius:50%;background:var(--mint);color:var(--t);display:grid;place-items:center;font-size:34px;margin:6px auto 12px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style><title>fj build · ฟอร์มข้อมูล</title><link rel="icon" href="icon.png"></head><body>
+<div class="wrap">
+  <div class="top"><span id="stepTxt"></span><span id="ref"></span></div>
+  <div class="pricebar" id="pricebar"></div>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="card" id="card"></div>
+  <div class="err" id="err" role="alert"></div>
+</div>
+<div class="nav"><div><button class="btn" id="back" type="button">ย้อนกลับ</button><button class="btn pri" id="next" type="button">ถัดไป</button></div></div>
+<script>
+const EX='https://script.google.com/macros/s/AKfycbxHU1Q_44lcEFG1QQHWmTrAwSb32oHxWwo8kGQ7txEw4E6b45q1dLgkElTzZFl2zC6C/exec';
+window.google={script:{run:(function mk(s,fl){const o={withSuccessHandler:h=>mk(h,fl),withFailureHandler:h=>mk(s,h),withUserObject:()=>mk(s,fl)};['submitForm','checkPromo'].forEach(n=>o[n]=function(){const a=[].slice.call(arguments);fetch(EX,{method:'POST',body:JSON.stringify({api:'run',fn:n,args:a})}).then(r=>r.json()).then(r=>{if(r&&r.__err){fl&&fl({message:r.__err})}else{s&&s(r)}}).catch(()=>{fl&&fl({message:'เครือข่ายขัดข้อง'})})});return o})()}};
+(function(){const svc=new URLSearchParams(location.search).get('svc')||'1.1';
+fetch(EX+'?api=webref&svc='+encodeURIComponent(svc),{credentials:'omit'}).then(r=>r.json()).then(i=>{window.__I=i;const sc=document.createElement('script');sc.text=document.getElementById('app').textContent;document.body.appendChild(sc);})
+.catch(()=>{document.body.insertAdjacentHTML('afterbegin','<p style="color:#fff;background:#c0392b;padding:12px;margin:0;font-family:sans-serif">โหลดฟอร์มไม่สำเร็จ ลองรีเฟรช หรือทักไลน์ @204wgewn</p>')})})();
+</script>
+<script type="text/plain" id="app">
+function deskBox(url,code){if(/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent))return '';var q='https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data='+encodeURIComponent(url);return '<div style="margin:18px auto 0;max-width:360px;background:#fff;color:#111;border-radius:14px;padding:16px;text-align:center"><b>💻 ใช้คอมอยู่? สแกน QR ด้วยมือถือ</b><br><img src="'+q+'" alt="QR" style="width:200px;height:200px;margin:10px 0"><div style="font-size:14px;line-height:1.6;text-align:left">หรือเปิดแอป LINE บนคอม → เพิ่มเพื่อน <b>@204wgewn</b> → พิมพ์ส่ง:<div style="background:#f2f2f2;border-radius:8px;padding:8px;margin:6px 0;font-weight:700;text-align:center" id="dcode">'+code+'</div><button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById(\'dcode\').innerText);this.innerText=\'คัดลอกแล้ว ✓\'" style="width:100%;padding:10px;border:0;border-radius:8px;background:#06C755;color:#fff;font-weight:700">คัดลอกข้อความ</button></div></div>'}
+function goLine(url){if(/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent))setTimeout(function(){try{window.top.location.href=url}catch(e){}},1500)}
+
+{
+const SVC=__I.svc,REF=__I.ref,K=__I.k,PRE=__I.pre_area||'',UNPAID=__I.unpaid==='1',FILES={},PROMO=__I.promo;let CODEP=__I.cpromo;
+const PROV=['กรุงเทพฯ','เชียงใหม่','นครราชสีมา','ระยอง','ภูเก็ต'];
+const BT=[['บ้านเดี่ยว'],['บ้านแฝด'],['ทาวน์โฮม / ทาวน์เฮาส์'],['อาคารพาณิชย์ / ตึกแถว'],['วิลล่า / พูลวิลล่า'],['หอพัก / อพาร์ตเมนต์'],['อาคารสำนักงาน'],['โกดัง / โรงงาน']];
+const ALLP=["กระบี่", "กรุงเทพฯ", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี", "ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "เชียงราย", "เชียงใหม่", "ตรัง", "ตราด", "ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช", "นครสวรรค์", "นนทบุรี", "นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี", "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี", "พระนครศรีอยุธยา", "พะเยา", "พังงา", "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่", "ภูเก็ต", "มหาสารคาม", "มุกดาหาร", "แม่ฮ่องสอน", "ยโสธร", "ยะลา", "ร้อยเอ็ด", "ระนอง", "ระยอง", "ราชบุรี", "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล", "สมุทรปราการ", "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย", "สุพรรณบุรี", "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อำนาจเจริญ", "อุดรธานี", "อุตรดิตถ์", "อุทัยธานี", "อุบลราชธานี"];
+const FORMS={
+ '1.1':{ref:'FLO-2611-002 · ชำระแล้ว 590 บ.',steps:[
+  {k:'prov',q:'บ้านจะสร้างที่จังหวัดไหน',h:'ใช้ปรับราคาวัสดุและค่าแรงตามพื้นที่',type:'chips',g2:1,opts:PROV.map(p=>[p]),other:'เลือกจังหวัด',list:ALLP},
+  {k:'size',q:'ขนาดบ้านและที่ดิน',h:'กรอกเท่าที่รู้ · พื้นที่ใช้สอยคำนวณให้จากกว้าง × ยาว × ชั้น แก้เองได้',type:'size'},
+  {k:'rooms',q:'มีห้องอะไรบ้าง',h:'ใช้คู่กับพื้นที่ เพื่อประมาณงานระบบและสุขภัณฑ์',type:'rooms'},
+  {k:'spec',q:'อยากได้วัสดุระดับไหน',type:'chips',opts:[['ประหยัด','กระเบื้องพื้นฐาน สุขภัณฑ์ทั่วไป'],['มาตรฐาน','แบบบ้านจัดสรรทั่วไป'],['ดี','กระเบื้องแกรนิตโต้ สุขภัณฑ์แบรนด์']]},
+  {k:'name',q:'ให้เรียกงานนี้ว่าอะไร',h:'ไม่บังคับ เช่น บ้านคุณต้อม · ใส่สิ่งที่อยากให้ดูเป็นพิเศษได้',type:'text',ph:'บ้านคุณ...',opt:1,extra:'อยากให้ดูอะไรเป็นพิเศษ (ไม่บังคับ)'},
+  {type:'sum'}]},
+
+ '1.2':{ref:'FLO-2611-004 · ชำระแล้ว 1,990 บ.',due:'1 ชั่วโมง',steps:[
+  {k:'deed',q:'ถ่ายรูปโฉนดที่ดิน',h:'ด้านหน้าโฉนด เห็นเลขโฉนดและขนาดแปลงชัด · ถ้ามีหลายแปลงแนบได้หลายรูป',type:'file',lab:'แตะเพื่อถ่ายรูป / เลือกรูปโฉนด',acc:'image/*,.pdf'},
+  {k:'plot',q:'ข้อมูลแปลง',h:'ดูจากหน้าโฉนดได้เลย',type:'fields',f:[['deed_no','เลขโฉนด',1,'เช่น 3998','text'],['amphoe','อำเภอ',1,'เช่น ถลาง','text'],['province','จังหวัด',1,'','prov'],['rai','ขนาดแปลง (ไร่-งาน-ตร.วา)',0,'เช่น 0-1-50 หรือ 150 ตร.วา','text']]},
+  {k:'type',q:'อยากสร้างอะไรบนที่ดินนี้',h:'เลือกได้หลายอย่าง · อย่างแรกรวมในราคาแล้ว · เทียบเพิ่มอย่างละ +200 บ. (แปลงใหญ่ +400 บ.)',type:'chips',multi:1,opts:[['ห้องเช่ารายเดือน'],['ร้านค้าชั้นล่าง + ห้องเช่า'],['อพาร์ตเมนต์ / คอนโด 4–7 ชั้น'],['ตึกแถว'],['โฮมออฟฟิศ'],['ทาวน์โฮม'],['บ้านเดี่ยว'],['พูลวิลล่าให้เช่ารายวัน'],['โกดัง']],other:'เช่น ร้านกาแฟ มินิมาร์ท'},
+  {k:'land',q:'ที่ดินนี้เป็นของคุณหรือยัง',type:'chips',opts:[['เป็นของตัวเองแล้ว'],['กำลังจะซื้อ','ระบบจะรวมราคาที่ดินในการคิดความคุ้ม']]},
+  {k:'buy',q:'ราคาที่ดินที่จะซื้อ',h:'ใส่ราคารวมทั้งแปลง',type:'fields',when:()=>A.land==='กำลังจะซื้อ',f:[['land_price','ราคาที่ดินรวม (บาท)',1,'เช่น 3500000','dec']]},
+  {k:'fund',q:'แหล่งเงินทุน',h:'ไม่บังคับ · ช่วยให้คำนวณดอกเบี้ยและระยะคืนทุนแม่นขึ้น',type:'fields',opt:1,f:[['finance','เงินสด หรือ กู้ธนาคาร',0,'เช่น กู้ 70%','text'],['budget','งบที่ตั้งไว้ (บาท)',0,'เช่น 5000000','dec']]},
+  {k:'name',q:'ให้เรียกงานนี้ว่าอะไร',h:'ไม่บังคับ · ใส่สิ่งที่อยากให้ดูเป็นพิเศษได้',type:'text',ph:'เช่น ที่ดินถลาง',opt:1,extra:'อยากให้ดูอะไรเป็นพิเศษ (ไม่บังคับ)'},
+  {type:'sum'}]},
+ '2.1':{ref:'FLO-2611-003 · ชำระแล้ว 890 บ. (151–300 ตร.ม.)',steps:[
+  {k:'boq',q:'แนบไฟล์ BOQ ของผู้รับเหมา',h:'Excel หรือ PDF ได้ทั้งคู่ · ถ่ายรูปหน้า BOQ ก็ได้',type:'file',lab:'แตะเพื่อเลือกไฟล์ BOQ'},
+  {k:'size',q:'ขนาดอาคาร',h:'ค่าบริการตามพื้นที่ใช้สอย: ไม่เกิน 150 ตร.ม. 590 บ. · 151–300 ตร.ม. 890 บ. · เกิน 300 ตร.ม. 1,090 บ. · ระบบจะเทียบกับงานพื้นใน BOQ',type:'size',def:PRE},
+  {k:'btype',q:'อาคารประเภทไหน',type:'chips',g2:1,opts:BT,other:'พิมพ์ประเภทอาคาร เช่น ร้านอาหาร คลินิก'},
+  {k:'prov',q:'สร้างที่จังหวัดไหน',type:'chips',g2:1,opts:PROV.map(p=>[p]),other:'เลือกจังหวัด',list:ALLP},
+  {k:'who',q:'คุณเป็นใครในงานนี้',type:'chips',opts:[['เจ้าของบ้าน','อยากรู้ว่าราคาที่ได้มาสมเหตุสมผลไหม'],['ผู้รับเหมา','อยากเช็กใบเสนอราคาของตัวเองก่อนส่ง'],['ผู้ออกแบบ / สถาปนิก'],['นายหน้า / ธนาคาร']],other:'ระบุ เช่น ผู้ดูแลโครงการ'},
+  {k:'draw',q:'มีแบบบ้านด้วยไหม',h:'ไม่บังคับ · ถ้ามี วิศวกรจะวัดพื้นที่จากแบบให้แม่นขึ้น',type:'file',lab:'แนบแบบ PDF (ไม่บังคับ)',opt:1},
+  {type:'sum'}]},
+ '2.2':{ref:'',quote:20,min:3000,steps:[
+  {k:'drw',q:'แนบแบบก่อสร้าง',h:'PDF ดีที่สุด · DWG SKP หรือ ZIP ก็ได้',type:'file',lab:'แตะเพื่อเลือกไฟล์แบบ',acc:'.pdf,.dwg,.skp,.zip'},
+  {k:'boq',q:'แนบ BOQ เดิม',h:'BOQ ที่ได้จากผู้รับเหมาหรือผู้ออกแบบ · เราจะคิดปริมาณงานใหม่จากแบบ ใส่ลงฟอร์ม BOQ เดิมของคุณ แล้วไฮไลต์จุดที่ปริมาณหรือราคาต่างกัน',type:'file',lab:'แตะเพื่อเลือกไฟล์ BOQ',acc:'.xlsx,.xls,.pdf'},
+  {k:'size',q:'ขนาดอาคาร',h:'ไม่บังคับ · เราดูจากแบบได้ · ถ้ากรอกจะเห็นราคาโดยประมาณทันที (20 บ./ตร.ม.)',type:'size',opt:1},
+  {k:'btype',q:'อาคารประเภทไหน',type:'chips',g2:1,opts:BT,other:'พิมพ์ประเภทอาคาร เช่น ร้านอาหาร คลินิก'},
+  {k:'prov',q:'สร้างที่จังหวัดไหน',type:'chips',g2:1,opts:PROV.map(p=>[p]),other:'เลือกจังหวัด',list:ALLP},
+  {k:'from',q:'BOQ นี้ได้มาจากใคร',type:'chips',opts:[['ผู้รับเหมาเสนอราคา'],['ผู้ออกแบบ / QS'],['ทำเอง']],other:'ระบุ'},
+  {k:'name',q:'ให้เรียกงานนี้ว่าอะไร',h:'ไม่บังคับ',type:'text',ph:'เช่น บ้านคุณต้อม',opt:1,extra:'อยากให้ดูอะไรเป็นพิเศษ (ไม่บังคับ)'},
+  {type:'sum'}]},
+ '3':{ref:'',quote:25,min:3750,steps:[
+  {k:'drw',q:'แนบแบบก่อสร้าง',h:'ต้องมีแบบ · PDF ดีที่สุด · DWG SKP หรือ ZIP ก็ได้',type:'file',lab:'แตะเพื่อเลือกไฟล์แบบ',acc:'.pdf,.dwg,.skp,.zip'},
+  {k:'size',q:'ขนาดอาคาร',h:'ไม่บังคับ · เราดูจากแบบได้ · ถ้ากรอกจะเห็นราคาโดยประมาณทันที (25 บ./ตร.ม.)',type:'size',opt:1},
+  {k:'btype',q:'อาคารประเภทไหน',type:'chips',g2:1,opts:BT,other:'พิมพ์ประเภทอาคาร เช่น ร้านอาหาร คลินิก'},
+  {k:'prov',q:'สร้างที่จังหวัดไหน',type:'chips',g2:1,opts:PROV.map(p=>[p]),other:'เลือกจังหวัด',list:ALLP},
+  {k:'name',q:'ให้เรียกงานนี้ว่าอะไร',h:'ไม่บังคับ',type:'text',ph:'เช่น บ้านคุณต้อม',opt:1,extra:'อยากให้ได้อะไรเพิ่ม เช่น แยกค่าวัสดุ-ค่าแรง (ไม่บังคับ)'},
+  {type:'sum'}]}
+};
+let F=FORMS[SVC]?SVC:'1.1',i=0,A={};
+const $=id=>document.getElementById(id),card=$('card'),err=$('err');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function label(s){const v=A[s.k];
+  if(s.k==='size'&&v)return [v.fl&&v.fl+' ชั้น',v.w&&v.l&&v.w+'×'+v.l+' ม.',v.area&&v.area+' ตร.ม.',(v.land||v.landwl)&&'ที่ดิน '+(v.land?v.land+' ตร.วา':v.landwl)].filter(Boolean).join(' · ')||'—';
+  if(s.k==='rooms'&&v)return 'นอน '+v.bed+' · น้ำ '+v.bath+' · นั่งเล่น '+v.living+' · ครัว '+v.kitchen+' · จอดรถ '+v.park+(v.other?' · '+v.other:'');
+  if(s.multi)return types().join(', ')||'—';
+  if(s.type==='fields'&&v)return s.f.map(f=>v[f[0]]&&(f[4]==='dec'?(+v[f[0]]).toLocaleString('th-TH'):v[f[0]])).filter(Boolean).join(' · ')||'—';
+  return v==null||v===''?'—':v}
+function bim(){
+  const el=$('bim');if(!el)return;const z=A.size||{},w=parseFloat($('zw').value)||0,l=parseFloat($('zl').value)||0,f=Math.min(parseInt(z.fl)||1,12),H=3;
+  if(!(w>0&&l>0)){el.innerHTML='<p class="tiny" style="margin:0;padding:14px;text-align:center">กรอกกว้าง × ยาว แล้วจะเห็นภาพบ้านตรงนี้</p>';return}
+  let lw=0,ll=0;const lwl=String($('zdw').value||'').match(/([\d.]+)\s*[x×*]\s*([\d.]+)/),sq=parseFloat($('zd').value);
+  if(lwl){lw=+lwl[1];ll=+lwl[2]}else if(sq>0){lw=ll=Math.sqrt(sq*4)}
+  const c=Math.cos(Math.PI/6),sn=0.5,P=(x,y,zz)=>[(x-y)*c,(x+y)*sn-zz];
+  const ox=lw>w?(lw-w)/2:0,oy=ll>l?(ll-l)/2:0,pts=[];
+  const box=(x0,y0,z0,dx,dy,dz)=>{const v=[[x0,y0,z0],[x0+dx,y0,z0],[x0+dx,y0+dy,z0],[x0,y0+dy,z0],[x0,y0,z0+dz],[x0+dx,y0,z0+dz],[x0+dx,y0+dy,z0+dz],[x0,y0+dy,z0+dz]].map(q=>P(...q));pts.push(...v);return v};
+  const land=lw>0?[[0,0,0],[lw,0,0],[lw,ll,0],[0,ll,0]].map(q=>P(...q)):null;if(land)pts.push(...land);
+  const fl=[];for(let k=0;k<f;k++)fl.push(box(ox,oy,k*H,w,l,H));
+  const xs=pts.map(q=>q[0]),ys=pts.map(q=>q[1]),mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);
+  const W=300,Hh=190,k=Math.min((W-60)/(mxx-mnx||1),(Hh-40)/(mxy-mny||1)),T=q=>[(q[0]-mnx)*k+30,(q[1]-mny)*k+20];
+  const poly=(a,fill,st)=>'<polygon points="'+a.map(q=>T(q).map(n=>n.toFixed(1)).join(',')).join(' ')+'" fill="'+fill+'" stroke="'+st+'" stroke-width="1"/>';
+  let g=land?poly(land,'var(--land)','var(--landline)'):'';
+  fl.forEach(v=>{g+=poly([v[1],v[2],v[6],v[5]],'var(--wallR)','var(--edge)')+poly([v[2],v[3],v[7],v[6]],'var(--wallL)','var(--edge)')});
+  const top=fl[f-1];g+=poly([top[4],top[5],top[6],top[7]],'var(--roof)','var(--edge)');
+  const mid=(a,b)=>T([(a[0]+b[0])/2,(a[1]+b[1])/2]);const b0=fl[0],m1=mid(b0[1],b0[2]),m2=mid(b0[2],b0[3]);
+  g+='<text x="'+(m1[0]+6)+'" y="'+(m1[1]+14)+'" class="dim">'+l+' ม.</text><text x="'+(m2[0]-6)+'" y="'+(m2[1]+14)+'" class="dim" text-anchor="end">'+w+' ม.</text>';
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+Hh+'" role="img">'+g+'</svg><p class="tiny" style="margin:0 10px 8px">'+f+' ชั้น · '+w+'×'+l+' ม. · พื้นที่ใช้สอย ≈ '+(Math.round(w*l*f*100)/100)+' ตร.ม.'+(lw?' · ที่ดิน ≈ '+Math.round(lw*ll/4)+' ตร.วา':'')+'</p>';
+}
+const FIX={'1.1':1,'1.2':1,'2.1':1},fmt=n=>Math.round(n).toLocaleString('th-TH');
+function sqw(){const t=String((A.plot||{}).rai||''),m=t.match(/(\d+)\s*-\s*(\d+)\s*-\s*([\d.]+)/);return m?(+m[1])*400+(+m[2])*100+(+m[3]):parseFloat(t)||0}
+function types(){return (A.type||[]).concat(A.type_o?[A.type_o]:[])}
+function price(){const z=A.size||{};
+  if(F==='1.1')return ((+z.fl||0)>=3||(+z.area||0)>250)?890:590;
+  if(F==='1.2'){const L=sqw()>200,n=Math.max(1,types().length);return (L?1990:990)+(n-1)*(L?400:200)}
+  if(F==='2.1'){const a=+z.area||0;return a?(a<=150?590:a<=300?890:1090):0}
+  const f=FORMS[F],a=+z.area||0;return a?Math.max(f.min,Math.ceil(Math.max(a,150)*f.quote)):0}
+const PL=()=>[PROMO,CODEP].filter(Boolean),d1=(p,x)=>x.pct?Math.round(p*(100-x.pct)/100):Math.max(0,p-x.amt);
+const disc=p=>PL().reduce(d1,p);
+const tagOf=x=>(x.auto?'🎉 '+x.label:'🎟️ โค้ด '+x.code)+' ลด '+(x.pct?x.pct+'%':fmt(x.amt)+' บ.');
+const pTag=()=>PL().map(tagOf).join(' + ');
+function pRows(p,lab){let v=p,h='<div class="prow"><span>'+(lab||'ราคาปกติ')+'</span><span>'+fmt(p)+' บาท</span></div>';PL().forEach(x=>{const n=d1(v,x);h+='<div class="prow promo"><span>'+tagOf(x)+'</span><span>−'+fmt(v-n)+' บาท</span></div>';v=n});return h}
+function applyCode(){const el=$('promo'),m=$('promomsg'),c=el?el.value.trim().toUpperCase():'';A.promo=c;
+  if(!c){CODEP=null;render();showPrice();return}
+  if(m)m.textContent='กำลังตรวจโค้ด…';
+  google.script.run.withSuccessHandler(r=>{CODEP=r.ok?r.p:null;A.promo=c;render();showPrice();const m2=$('promomsg');if(m2){m2.textContent=r.ok?'✓ ใช้โค้ด '+c+' แล้ว'+(PROMO?' (ซ้อนกับ'+PROMO.label+')':''):'✗ '+r.msg;m2.style.color=r.ok?'#0F6E56':'#c0392b'}})
+    .withFailureHandler(()=>{const m2=$('promomsg');if(m2)m2.textContent='ตรวจโค้ดไม่ได้ ลองอีกครั้ง'}).checkPromo(c,F)}
+function priceLine(){const p=price();
+  if(PL().length&&p)return '<span>'+(FIX[F]?'ค่าบริการตามที่เลือก':'ราคาโดยประมาณ')+'<br><small>'+pTag()+'</small></span><b><s style="font-size:14px;opacity:.6;font-weight:400">'+fmt(p)+'</s> '+(FIX[F]?'':'≈ ')+fmt(disc(p))+' บ.</b>';
+  if(FIX[F])return p?'<span>ค่าบริการตามที่เลือก</span><b>'+fmt(p)+' บ.</b>':'';
+  return '<span>ราคาโดยประมาณ ('+FORMS[F].quote+' บ./ตร.ม.)</span><b>'+(p?'≈ '+fmt(p)+' บ.':'รอดูจากแบบ')+'</b>'}
+function showPrice(){const el=$('pricebar'),h=UNPAID||!FIX[F]?priceLine():'';el.innerHTML=h;el.style.display=h?'flex':'none'}
+function bigJob(){if(UNPAID)return '';const z=A.size||{};
+  if(F==='1.1'&&((parseInt(z.fl)||0)>=3||(parseFloat(z.area)||0)>250))return 'งานนี้เป็นอัตรางานใหญ่ 890 บ. ต้องโอนเพิ่ม 300 บ. · ทีมจะเริ่มทำเมื่อยืนยันยอดแล้ว';
+  if(F==='1.2'){const t=String((A.plot||{}).rai||''),m=t.match(/(\d+)\s*-\s*(\d+)\s*-\s*([\d.]+)/),w=m?(+m[1])*400+(+m[2])*100+(+m[3]):parseFloat(t)||0;if(w>200)return 'แปลง '+w+' ตร.วา เกิน 200 ตร.วา เป็นอัตราแปลงใหญ่ 2,990 บ. ต้องโอนเพิ่ม 1,000 บ. · ทีมจะเริ่มทำเมื่อยืนยันยอดแล้ว'}
+  return ''}
+function sumPrice(){const p=price();if(!PL().length)return 'ค่าบริการ<span class="big">'+fmt(p)+' บาท</span>';
+  return pRows(p)+'<div class="prow tot"><span>ยอดชำระ</span><span>'+fmt(disc(p))+' บาท</span></div>'}
+function quoteTxt(){const f=FORMS[F],a=parseFloat((A.size||{}).area)||0;if(!a)return (PL().length?pTag()+' · ':'')+'ราคา '+f.quote+' บ./ตร.ม. (ขั้นต่ำ '+fmt(f.min)+' บ.)'+(PL().length?' ก่อนหักส่วนลด':'')+' · วิศวกรตรวจพื้นที่ใช้สอยจากแบบ แล้วส่งใบเสนอราคาใน LINE';return (PL().length?pRows(price(),'ราคาปกติ ≈')+'<div class="prow tot"><span>ราคาโดยประมาณ ≈</span><span>'+fmt(disc(price()))+' บาท</span></div>':'ราคาโดยประมาณ <span class="big">≈ '+fmt(price())+' บ.</span>')+fmt(a)+' ตร.ม. × '+f.quote+' บ. (ขั้นต่ำ '+fmt(f.min)+' บ.) · ราคาจริงตามพื้นที่ที่วิศวกรตรวจจากแบบ จะส่งเป็นใบเสนอราคาใน LINE';const p=Math.max(f.min,Math.round(a*f.quote));return 'ราคาโดยประมาณ '+a.toLocaleString('th-TH')+' ตร.ม. × '+f.quote+' บ. = '+p.toLocaleString('th-TH')+' บ.'+(a*f.quote<f.min?' (ขั้นต่ำ)':'')+' · ใบเสนอราคาจริงส่งใน LINE หลังกดส่ง'}
+const REQ='<span class="req" aria-label="จำเป็น">*</span>';function req(s){return s.opt?'':REQ}
+function render(){
+  const st=FORMS[F].steps,s=st[i],n=st.length;err.textContent='';
+  $('ref').textContent=REF+(FIX[F]?(UNPAID?' · ยังไม่ชำระ':' · ชำระแล้ว'):' · ขอใบเสนอราคา');showPrice();
+  $('stepTxt').textContent=s.type==='sum'?'ตรวจก่อนส่ง':'ขั้น '+(i+1)+' จาก '+(n-1);
+  $('bar').style.width=Math.round((i+1)/n*100)+'%';
+  $('back').style.visibility=i?'visible':'hidden';
+  $('next').textContent=s.type==='sum'?'ส่งข้อมูล':'ถัดไป';
+  let h='';
+  if(s.type==='chips'){
+    const isO=s.multi?(A[s.k+'_o']!=null):(s.other&&A[s.k]!=null&&!s.opts.some(o=>o[0]===A[s.k]));
+    h='<h1>'+s.q+req(s)+'</h1>'+(s.h?'<p class="hint">'+s.h+'</p>':'')+'<div class="opts'+(s.g2?' g2':'')+'">'+s.opts.map(o=>'<button type="button" class="opt'+((s.multi?(A[s.k]||[]).includes(o[0]):A[s.k]===o[0])?' on':'')+'" data-v="'+esc(o[0])+'">'+o[0]+(o[1]?'<small>'+o[1]+'</small>':'')+'</button>').join('')+(s.other?'<button type="button" class="opt'+(isO?' on':'')+'" data-v="อื่นๆ">อื่นๆ</button>':'')+'</div>';
+    if(isO&&s.list)h+='<div class="lab">เลือกจังหวัด'+REQ+' <small>(ครบ 77 จังหวัด)</small></div><select id="oth"><option value="">— แตะเพื่อเลือกจังหวัด —</option>'+s.list.filter(p=>!s.opts.some(o=>o[0]===p)).map(p=>'<option'+(A[s.k]===p?' selected':'')+'>'+p+'</option>').join('')+'</select>';
+    else if(isO)h+='<div class="lab">อื่นๆ ระบุ'+REQ+'</div><input type="text" id="oth" placeholder="'+s.other+'" value="'+(s.multi?esc(A[s.k+'_o']||''):A[s.k]==='อื่นๆ'?'':esc(A[s.k]))+'">';
+    if(s.alt==='rooms'){const r=A.rooms||{bed:3,bath:2};h+='<div class="or">ไม่รู้พื้นที่? บอกเป็นจำนวนห้องแทน</div>'+['bed','bath'].map(k=>'<div class="row"><span>'+(k==='bed'?'ห้องนอน':'ห้องน้ำ')+'</span><span class="step"><button type="button" data-r="'+k+'" data-d="-1" aria-label="ลด">−</button><b id="r_'+k+'">'+r[k]+'</b><button type="button" data-r="'+k+'" data-d="1" aria-label="เพิ่ม">+</button></span></div>').join('')+'<button type="button" class="edit" id="useRooms" style="margin-top:10px;padding:0">ใช้จำนวนห้องแทนพื้นที่</button>'}
+  }else if(s.type==='size'){
+    const z=A.size||(A.size={fl:'',w:'',l:'',area:s.def||'',land:''});
+    h='<h1>'+s.q+'</h1><p class="hint">'+s.h+'</p><div class="lab">กี่ชั้น'+req(s)+'</div><div class="opts g5">'+['1','2','3','4'].map(f=>'<button type="button" class="opt c'+(z.fl===f?' on':'')+'" data-fl="'+f+'">'+f+(F==='1.1'?'<small>'+(+f>=3?'890':'590')+' บ.</small>':'')+'</button>').join('')+'<input type="text" inputmode="numeric" id="flo" class="c int" placeholder="อื่นๆ" value="'+(['1','2','3','4'].includes(z.fl)?'':esc(z.fl))+'"></div>'+
+      '<div class="lab">ขนาดตัวบ้าน กว้าง × ยาว (เมตร)</div><div class="wl"><input type="text" inputmode="decimal" class="dec" id="zw" placeholder="กว้าง เช่น 8.5" value="'+esc(z.w)+'"><span>×</span><input type="text" inputmode="decimal" class="dec" id="zl" placeholder="ยาว เช่น 12.25" value="'+esc(z.l)+'"></div>'+
+      '<div class="bim" id="bim" aria-label="ภาพบ้าน 3 มิติจากขนาดที่กรอก"></div><div class="lab">พื้นที่ใช้สอยรวมทุกชั้น (ตร.ม.)'+(s.opt?' <small>(ไม่บังคับ)</small>':REQ+' <small>หรือกรอกกว้าง × ยาว</small>')+'</div><input type="text" inputmode="decimal" class="dec" id="za" placeholder="เช่น 180" value="'+esc(z.area)+'"><p class="tiny" id="zcalc"></p>'+
+      '<div class="lab">ขนาดที่ดิน <small>(ไม่บังคับ)</small></div><div class="wl"><input type="text" inputmode="decimal" class="dec" id="zd" placeholder="ตร.วา" value="'+esc(z.land)+'"><span></span><input type="text" id="zdw" placeholder="หรือ กว้าง×ยาว ม." value="'+esc(z.landwl||'')+'"></div>';
+  }else if(s.type==='rooms'){
+    const r=A.rooms||(A.rooms={bed:3,bath:2,living:1,kitchen:1,park:1,other:''});
+    h='<h1>'+s.q+REQ+'</h1><p class="hint">'+s.h+'</p>'+[['bed','ห้องนอน'],['bath','ห้องน้ำ'],['living','ห้องนั่งเล่น'],['kitchen','ครัว'],['park','ที่จอดรถ (คัน)']].map(k=>'<div class="row"><span>'+k[1]+'</span><span class="step"><button type="button" data-r="'+k[0]+'" data-d="-1" aria-label="ลด">−</button><b id="r_'+k[0]+'">'+r[k[0]]+'</b><button type="button" data-r="'+k[0]+'" data-d="1" aria-label="เพิ่ม">+</button></span></div>').join('')+
+      '<div class="lab">ห้องอื่นๆ <small>(ไม่บังคับ)</small></div><input type="text" id="rot" placeholder="เช่น ห้องทำงาน ห้องพระ ห้องแม่บ้าน" value="'+esc(r.other)+'">';
+  }else if(s.type==='fields'){
+    const o=A[s.k]||(A[s.k]={});
+    h='<h1>'+s.q+'</h1>'+(s.h?'<p class="hint">'+s.h+'</p>':'')+s.f.map(f=>'<div class="lab">'+f[1]+(f[2]?REQ:' <small>(ไม่บังคับ)</small>')+'</div>'+(f[4]==='prov'?'<select id="fd_'+f[0]+'"><option value="">— แตะเพื่อเลือกจังหวัด —</option><optgroup label="ที่เลือกบ่อย">'+PROV.map(p=>'<option'+(o[f[0]]===p?' selected':'')+'>'+p+'</option>').join('')+'</optgroup><optgroup label="ทุกจังหวัด (ก–ฮ)">'+ALLP.filter(p=>!PROV.includes(p)).map(p=>'<option'+(o[f[0]]===p?' selected':'')+'>'+p+'</option>').join('')+'</optgroup></select>':'<input type="text" '+(f[4]==='dec'?'inputmode="decimal" class="dec" ':'')+'id="fd_'+f[0]+'" placeholder="'+f[3]+'" value="'+esc(o[f[0]]||'')+'">')).join('');
+  }else if(s.type==='text'){
+    h='<h1>'+s.q+req(s)+'</h1><p class="hint">'+s.h+'</p><input type="text" id="txt" placeholder="'+s.ph+'" value="'+esc(A[s.k]||'')+'">'+(s.extra?'<div class="or">'+s.extra+'</div><input type="text" id="txt2" placeholder="เช่น ราคาหลังคา งานระบบ" value="'+esc(A.focus||'')+'">':'');
+  }else if(s.type==='num'){
+    if(A[s.k]==null)A[s.k]=s.def;
+    h='<h1>'+s.q+req(s)+'</h1><p class="hint">'+s.h+'</p><input type="text" inputmode="decimal" class="dec" id="num" value="'+esc(A[s.k])+'">';
+  }else if(s.type==='file'){
+    h='<h1>'+s.q+req(s)+'</h1><p class="hint">'+s.h+'</p><label class="file"><input type="file" id="fl" accept="'+(s.acc||'.xlsx,.xls,.pdf,image/*')+'" multiple>'+(A[s.k]?'✓ '+esc(A[s.k]):s.lab)+'</label>';
+  }else{
+    const rows=st.map((x,j)=>[x,j]).filter(([x])=>x.k&&(!x.when||x.when())).map(([x,j])=>'<div class="row"><span>'+x.q.replace(/ไหม$|อะไร$|เท่าไร$|ไหน$/,'').trim()+'</span><span>'+esc(label(x))+'<button type="button" class="edit" data-go="'+j+'">แก้</button></span></div>').join('');
+    h='<h1>ตรวจข้อมูลก่อนส่ง</h1><p class="hint">กด "แก้" เพื่อกลับไปแก้ข้อนั้น'+(FORMS[F].quote?'':' · ส่งได้ครั้งเดียวต่อการชำระ 1 ครั้ง')+'</p><div class="sum">'+rows+'</div>'+(bigJob()?'<div class="warn">'+bigJob()+'</div>':'')+(FORMS[F].quote?'<div class="warn" style="background:var(--mint);color:var(--mintink)">'+quoteTxt()+'</div>':UNPAID?'<div class="warn" style="background:var(--mint);color:var(--mintink)">'+sumPrice()+'<br>ไม่มี VAT · กดส่งแล้วกลับไปที่ LINE สแกน QR ชำระ แล้วส่งสลิป · ทีมเริ่มงานทันทีที่ยืนยันยอด</div>':'')+'<div class="lab">มีโค้ดส่วนลดไหม <small>(ไม่บังคับ)</small></div><div style="display:flex;gap:8px"><input type="text" id="promo" placeholder="เช่น FJ100" style="text-transform:uppercase;flex:1" value="'+esc(A.promo||(CODEP?CODEP.code:''))+'" onchange="applyCode()"><button type="button" class="edit" style="padding:8px 14px" onclick="applyCode()">ใช้โค้ด</button></div><div id="promomsg" class="hint" style="margin-top:4px">'+(CODEP?'✓ ใช้โค้ด '+esc(CODEP.code)+' แล้ว'+(PROMO?' (ซ้อนกับ'+esc(PROMO.label)+')':''):'')+'</div>';
+  }
+  card.innerHTML=h;
+  if(s.type==='size')bim();
+}
+function save(){
+  const s=FORMS[F].steps[i],o=$('oth'),t=$('txt'),t2=$('txt2'),nm=$('num');
+  if(o){if(s.multi)A[s.k+'_o']=o.value.trim();else A[s.k]=o.value.trim()||'อื่นๆ'}
+  if(o&&o.tagName==='SELECT')err.textContent='';
+  if(t)A[s.k]=t.value.trim();if(t2)A.focus=t2.value.trim();
+  if(nm)A[s.k]=nm.value.trim();
+  if(s.type==='size'){const z=A.size,g=id=>$(id).value.trim();if(g('flo'))z.fl=g('flo');z.w=g('zw');z.l=g('zl');z.area=g('za');z.land=g('zd');z.landwl=g('zdw')}
+  if(s.type==='rooms')A.rooms.other=$('rot').value.trim();
+  if(s.type==='sum'&&$('promo'))A.promo=$('promo').value.trim().toUpperCase();
+  if(s.type==='fields')s.f.forEach(f=>{A[s.k][f[0]]=$('fd_'+f[0]).value.trim()});
+}
+function valid(){const s=FORMS[F].steps[i];if(!s.k||s.opt)return true;
+  if(s.type==='size'){const z=A.size;if(!z.fl)return 'เลือกจำนวนชั้นก่อนนะครับ';if(!z.area&&!(z.w&&z.l))return 'กรอกพื้นที่ใช้สอย หรือ กว้าง × ยาว อย่างใดอย่างหนึ่ง';return true}
+  if(s.type==='rooms')return A.rooms.bed+A.rooms.bath>0||'ใส่จำนวนห้องอย่างน้อย 1 ห้อง';
+  if(s.type==='fields'){const m=s.f.find(f=>f[2]&&!(A[s.k]||{})[f[0]]);return m?'กรอก '+m[1]+' ก่อนนะครับ':true}
+  if(s.multi){const n=(A[s.k]||[]).length+(A[s.k+'_o']?1:0);if(A[s.k+'_o']==='')return 'พิมพ์ระบุในช่อง อื่นๆ ก่อนนะครับ';return n>0||'เลือกอย่างน้อย 1 อย่าง'}
+  if(A[s.k]==='อื่นๆ')return 'พิมพ์ระบุในช่อง อื่นๆ ก่อนนะครับ';
+  return A[s.k]!=null&&A[s.k]!==''}
+card.addEventListener('click',e=>{
+  const b=e.target.closest('button,[data-go]');if(!b)return;const s=FORMS[F].steps[i];
+  if(b.dataset.fl){save();A.size.fl=b.dataset.fl;render();return}
+  if(b.dataset.v!=null&&s.multi){save();if(b.dataset.v==='อื่นๆ'){if(A[s.k+'_o']!=null)delete A[s.k+'_o'];else A[s.k+'_o']=''}else{const a=A[s.k]||(A[s.k]=[]),j=a.indexOf(b.dataset.v);j<0?a.push(b.dataset.v):a.splice(j,1)}render();return}
+  if(b.dataset.v!=null){A[s.k]=b.dataset.v;render();return}
+  if(b.dataset.r){const r=A.rooms;r[b.dataset.r]=Math.max(0,Math.min(20,r[b.dataset.r]+ +b.dataset.d));$('r_'+b.dataset.r).textContent=r[b.dataset.r];return}
+  if(b.dataset.go!=null){i=+b.dataset.go;render()}
+});
+card.addEventListener('input',e=>{err.textContent='';setTimeout(()=>{if(FORMS[F].steps[i].type==='size'){A.size.area=$('za').value.trim();if($('flo').value)A.size.fl=$('flo').value}if(FORMS[F].steps[i].type==='fields')save();showPrice()},0);
+  const t=e.target;if(t.classList&&t.classList.contains('dec')){let v=t.value.replace(',','.').replace(/[^\d.]/g,'');const p=v.indexOf('.');if(p>=0)v=v.slice(0,p+1)+v.slice(p+1).replace(/\./g,'').slice(0,2);if(t.value!==v)t.value=v}
+  if(t.classList&&t.classList.contains('int')){const v=t.value.replace(/\D/g,'').slice(0,2);if(t.value!==v)t.value=v}
+  if(FORMS[F].steps[i].type==='size'){if(e.target.id==='flo'){A.size.fl=e.target.value.trim();card.querySelectorAll('[data-fl]').forEach(x=>x.classList.remove('on'))}
+    const w=parseFloat($('zw').value),l=parseFloat($('zl').value),f=parseInt(A.size.fl)||0,za=$('za');
+    bim();
+    if(w&&l&&f&&(e.target.id!=='za')){const a=Math.round(w*l*f*100)/100;if(FORMS[F].steps[i].def){$('zcalc').textContent='จากกว้าง × ยาว × ชั้น ≈ '+a+' ตร.ม. · ถ้าตัวเลขจริงต่างจาก '+za.value+' แก้ช่องด้านบนได้';return}za.value=a;$('zcalc').textContent='คำนวณ '+w+' × '+l+' × '+f+' ชั้น = '+a+' ตร.ม. (แก้ได้ถ้าแต่ละชั้นไม่เท่ากัน)'}}
+});
+card.addEventListener('change',e=>{if(e.target.id==='fl'){const s=FORMS[F].steps[i];FILES[s.k]=[...e.target.files];A[s.k]=FILES[s.k].map(f=>f.name).join(', ');render()}});
+$('next').addEventListener('click',()=>{
+  save();const st=FORMS[F].steps;
+  if(st[i].type==='sum'){send();return}
+  const v=valid();if(v!==true){err.textContent=typeof v==='string'?(FORMS[F].steps[i].list&&A[FORMS[F].steps[i].k]==='อื่นๆ'?'เลือกจังหวัดจากรายการก่อนนะครับ':v):'เลือกหรือกรอกข้อนี้ก่อนนะครับ';return}
+  i++;while(st[i].when&&!st[i].when())i++;render();
+});
+$('back').addEventListener('click',()=>{save();const st=FORMS[F].steps;if(i)i--;while(i&&st[i].when&&!st[i].when())i--;render()});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();$('next').click()}});
+const rd=f=>new Promise(r=>{const x=new FileReader();x.onload=()=>r({name:f.name,type:f.type,b64:String(x.result).split(',')[1]});x.readAsDataURL(f)});
+async function send(){
+  const nb=$('next'),z=A.size||{},r=A.rooms||{},pl=A.plot||{},o={ref:REF,svc:F,k:K,files:{},name:A.name||'',focus:A.focus||'',promo:A.promo||''};
+  nb.disabled=true;nb.textContent='กำลังส่ง…';
+  for(const k in FILES){const key=k==='drw'||k==='draw'?'drawings':k;o.files[key]=[];for(const f of FILES[k]){if(f.size>40e6){err.textContent='ไฟล์ '+f.name+' เกิน 40MB · ส่งในแชต LINE แทน';continue}o.files[key].push(await rd(f))}}
+  if(F==='1.1')Object.assign(o,{province:A.prov,floors:z.fl,area_m2:z.area,fw:z.w,fl:z.l,land_sqw:z.land,land_wl:z.landwl,bedrooms:r.bed,bathrooms:r.bath,rooms:'ห้องนอน '+r.bed+' · ห้องน้ำ '+r.bath+' · นั่งเล่น '+r.living+' · ครัว '+r.kitchen+' · จอดรถ '+r.park+(r.other?' · '+r.other:''),spec:{'ประหยัด':'economy','มาตรฐาน':'standard','ดี':'premium'}[A.spec]||A.spec});
+  if(F==='1.2')Object.assign(o,{deed_no:pl.deed_no,amphoe:pl.amphoe,province12:pl.province,plot:pl.rai,plot_sqw:sqw()||'',types:types(),type:TMAP[types()[0]]||types()[0],land:{'เป็นของตัวเองแล้ว':'own','กำลังจะซื้อ':'buy'}[A.land],land_price:(A.buy||{}).land_price||'',finance:(A.fund||{}).finance||'',budget:(A.fund||{}).budget||''});
+  if(F!=='1.1'&&F!=='1.2')Object.assign(o,{area2:z.area||'',floors2:z.fl||'',fw:z.w||'',fl:z.l||'',land_sqw:z.land||'',btype:A.btype,province2:A.prov,who:A.who||'',boq_from:A.from||''});
+  google.script.run.withSuccessHandler(res=>{
+    if(!res.ok){err.textContent=res.msg;nb.disabled=false;nb.textContent='ส่งข้อมูล';return}
+    if(res.web){card.innerHTML='<div class="done"><div class="ok">✓</div><h1>เหลืออีก 1 ขั้น</h1><p class="hint">'+res.msg+'</p><p><a id="goline" href="'+res.line+'" target="_top" style="display:inline-block;background:#06C755;color:#fff;font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none;font-size:18px">ส่งรหัส '+res.ref+' เข้าไลน์</a></p><p class="hint">ถ้ายังไม่ได้เป็นเพื่อน ไลน์จะให้กดเพิ่มเพื่อนก่อน แล้วกดส่งข้อความที่พิมพ์ไว้ให้</p>'+deskBox(res.line,'รหัสงาน '+res.ref)+'</div>';goLine(res.line)}
+    else card.innerHTML='<div class="done"><div class="ok">✓</div><h1>ได้รับข้อมูลแล้ว</h1><p class="hint">'+res.msg+'</p><p class="hint">ปิดหน้านี้แล้วกลับไปที่แชต LINE ได้เลย</p></div>';
+    nb.style.visibility='hidden';$('back').style.visibility='hidden';$('stepTxt').textContent='ส่งแล้ว';$('bar').style.width='100%';
+  }).withFailureHandler(x=>{err.textContent='ส่งไม่สำเร็จ: '+x.message+' · ลองใหม่อีกครั้ง';nb.disabled=false;nb.textContent='ส่งข้อมูล'}).submitForm(o);
+}
+const TMAP={'ห้องเช่ารายเดือน':'rental','ร้านค้าชั้นล่าง + ห้องเช่า':'shop_rental','อพาร์ตเมนต์ / คอนโด 4–7 ชั้น':'condo','ตึกแถว':'shophouse','โฮมออฟฟิศ':'home_office','ทาวน์โฮม':'townhome','บ้านเดี่ยว':'house','พูลวิลล่าให้เช่ารายวัน':'pool_villa','โกดัง':'warehouse'};
+render();
+}
+</script>
+</body></html>
