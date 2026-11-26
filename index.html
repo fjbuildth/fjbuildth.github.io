@@ -43,6 +43,7 @@ footer{padding:36px 0;color:var(--mu);font-size:14px}footer .w{display:flex;flex
 .quote small{display:block;font-family:Sarabun;font-size:15px;color:var(--mu);margin-top:6px}
 .facts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.facts span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:15px}
 @media(max-width:760px){.about{grid-template-columns:1fr}.vid{max-width:340px;margin:0 auto}}
+.svc{display:flex;flex-direction:column;gap:6px}.svc .stag{font-size:13px;color:var(--mu)}.svc h3{margin:0}.sprice{font-family:Kanit;font-weight:800;font-size:24px;color:#fff}.svc p{flex:1}.svc .btn{text-align:center;margin-top:10px}
 </style>
 </head>
 <body>
@@ -76,18 +77,13 @@ footer{padding:36px 0;color:var(--mu);font-size:14px}footer .w{display:flex;flex
 <div class="card"><h3>🛠️ เครื่องมือบนเว็บ</h3><p>ใช้ฟรีทุกตัวที่เปิดให้สมาชิก (ทยอยเปิด)</p></div>
 </div>
 <p style="color:var(--mu)">สมัครครั้งเดียว ระบบจำไลน์คุณตลอด · กรอก 1 นาที แล้วยืนยันในไลน์ @204wgewn</p>
-<p class="cta-row"><a class="btn" href="member.html">📝 สมัครสมาชิกฟรี</a><a class="btn o" href="form.html?svc=1.1">ประมาณราคาด่วน (กรอกบนเว็บ)</a></p>
+<p class="cta-row"><a class="btn" href="member.html">📝 สมัครสมาชิกฟรี</a><a class="btn o" href="#services">ดูบริการทั้งหมด</a></p>
 </div></section>
 <section id="services"><div class="w">
-<h2>บริการของเรา</h2>
-<div class="grid">
-<div class="card"><h3>ตรวจใบเสนอราคา / BOQ</h3><p>เทียบราคากับฐานราคากลางรายจังหวัด หาจุดที่แพงเกิน ขาด หรือซ้ำ พร้อมรายงานสรุปให้ใช้ต่อรอง</p></div>
-<div class="card"><h3>ทำ BOQ จากแบบ</h3><p>ถอดปริมาณจากแบบ PDF ครบทุกหมวด แยกค่าวัสดุ–ค่าแรง ใช้เปิดประมูลหรือยื่นขอสินเชื่อ</p></div>
-<div class="card"><h3>ประมาณราคาเร็ว (ไม่มีแบบ)</h3><p>ประมาณงบตามหลักสถิติจากพื้นที่และสเปก รู้กรอบงบก่อนจ้างออกแบบ</p></div>
-<div class="card"><h3>โมเดล 3D + แผนงาน</h3><p>เห็นบ้านเป็น 3D พร้อมลำดับก่อสร้าง แผนงาน และงวดเงินที่สอดคล้องกับงานจริง</p></div>
-<div class="card"><h3>ตรวจงานหน้างาน (ภูเก็ต)</h3><p>วิศวกรเข้าตรวจก่อนจ่ายงวด ตรวจเหล็ก–คอนกรีต–งานระบบ พร้อมรายงานภาพถ่าย</p></div>
-<div class="card"><h3>ปรึกษาก่อนเซ็นสัญญา</h3><p>อ่านเงื่อนไขงวดงาน ค่าปรับ การรับประกัน ให้คุณรู้ว่าต้องถามผู้รับเหมาเรื่องอะไร</p></div>
-</div></div></section>
+<span class="tag">เลือกตามสิ่งที่คุณมี</span>
+<h2>บริการของเรา <span style="color:var(--or)">ครบเหมือนในไลน์</span></h2>
+<p style="color:var(--mu)">กรอกบนเว็บได้เลย ส่งแล้วระบบพาเข้าไลน์ @204wgewn พร้อมรหัสงาน แจ้งราคาและส่งงานในแชต · สมาชิกลดเพิ่ม 10%</p>
+<div class="grid"><div class="card svc"><span class="stag">มีขนาดบ้านในใจ หรือมีแบบแล้ว</span><h3>ประมาณงบสร้างบ้าน</h3><div class="sprice">590 / 890 บ.</div><p>≤2 ชั้น ≤250 ตร.ม. 590 · ใหญ่กว่า 890 · ได้ผลใน 30 นาที</p><a class="btn" href="form.html?svc=1.1">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีโฉนดที่ดิน</span><h3>ที่ดินนี้สร้างอะไรคุ้ม</h3><div class="sprice">990 / 1,990 บ.</div><p>แปลง ≤200 ตร.วา 990 · ใหญ่กว่า 1,990 · เทียบเพิ่ม +200/+400 ต่อประเภท</p><a class="btn" href="form.html?svc=1.2">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีแค่ BOQ ของผู้รับเหมา</span><h3>ตรวจราคา BOQ</h3><div class="sprice">590–1,090 บ.</div><p>คิดตามพื้นที่ใช้สอย · ได้ผลใน 1 ชม.</p><a class="btn" href="form.html?svc=2.1">เริ่มกรอกข้อมูล</a></div><div class="card svc"><span class="stag">มีแบบ + BOQ</span><h3>ตรวจ BOQ + คิดปริมาณใหม่จากแบบ</h3><div class="sprice">20 บ./ตร.ม.</div><p>ขั้นต่ำ 3,000 บ. · วิศวกรตรวจแบบแล้วส่งใบเสนอราคา</p><a class="btn" href="form.html?svc=2.2">ขอใบเสนอราคา</a></div><div class="card svc"><span class="stag">มีแบบ ยังไม่มี BOQ</span><h3>คิดปริมาณงานและราคาจากแบบ</h3><div class="sprice">25 บ./ตร.ม.</div><p>ขั้นต่ำ 3,750 บ. · วิศวกรตรวจแบบแล้วส่งใบเสนอราคา</p><a class="btn" href="form.html?svc=3">ขอใบเสนอราคา</a></div><div class="card svc"><span class="stag">ไม่แน่ใจว่าควรเลือกอะไร</span><h3>คุยกับวิศวกร</h3><div class="sprice">ปรึกษาฟรี</div><p>ตอบในเวลาทำการ 08–21 น.</p><a class="btn line" href="https://line.me/R/oaMessage/@204wgewn/?%E0%B8%82%E0%B8%AD%E0%B8%84%E0%B8%B8%E0%B8%A2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3">คุยกับวิศวกรในไลน์</a></div></div></div></section>
 
 <section><div class="w">
 <h2>ทำงานอย่างไร</h2>
