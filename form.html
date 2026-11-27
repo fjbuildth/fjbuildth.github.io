@@ -147,6 +147,8 @@ function bim(){
   g+='<text x="'+(m1[0]+6)+'" y="'+(m1[1]+14)+'" class="dim">'+l+' ม.</text><text x="'+(m2[0]-6)+'" y="'+(m2[1]+14)+'" class="dim" text-anchor="end">'+w+' ม.</text>';
   el.innerHTML='<svg viewBox="0 0 '+W+' '+Hh+'" role="img">'+g+'</svg><p class="tiny" style="margin:0 10px 8px">'+f+' ชั้น · '+w+'×'+l+' ม. · พื้นที่ใช้สอย ≈ '+(Math.round(w*l*f*100)/100)+' ตร.ม.'+(lw?' · ที่ดิน ≈ '+Math.round(lw*ll/4)+' ตร.วา':'')+'</p>';
 }
+const LANGS={'ไทย':'th','English':'en','Русский':'ru','中文':'zh'};
+Object.keys(FORMS).forEach(k=>FORMS[k].steps.unshift({k:'lang',q:'ภาษาของรายงาน · Report language · Язык отчёта · 报告语言',h:'เล่มรายงานและข้อความถึงคุณจะเป็นภาษานี้ · Your report and our messages will be in this language · Отчёт и сообщения будут на этом языке · 报告和消息将使用此语言',type:'chips',opts:[['ไทย','รายงานภาษาไทย'],['English','Report in English'],['Русский','Отчёт на русском'],['中文','中文报告']]}));
 const FIX={'1.1':1,'1.2':1,'2.1':1},fmt=n=>Math.round(n).toLocaleString('th-TH');
 function sqw(){const t=String((A.plot||{}).rai||''),m=t.match(/(\d+)\s*-\s*(\d+)\s*-\s*([\d.]+)/);return m?(+m[1])*400+(+m[2])*100+(+m[3]):parseFloat(t)||0}
 function types(){return (A.type||[]).concat(A.type_o?[A.type_o]:[])}
@@ -264,7 +266,7 @@ $('back').addEventListener('click',()=>{save();const st=FORMS[F].steps;if(i)i--;
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();$('next').click()}});
 const rd=f=>new Promise(r=>{const x=new FileReader();x.onload=()=>r({name:f.name,type:f.type,b64:String(x.result).split(',')[1]});x.readAsDataURL(f)});
 async function send(){
-  const nb=$('next'),z=A.size||{},r=A.rooms||{},pl=A.plot||{},o={ref:REF,svc:F,k:K,files:{},name:A.name||'',focus:A.focus||'',promo:A.promo||''};
+  const nb=$('next'),z=A.size||{},r=A.rooms||{},pl=A.plot||{},o={ref:REF,svc:F,k:K,files:{},name:A.name||'',focus:A.focus||'',promo:A.promo||'',lang:LANGS[A.lang]||'th'};
   nb.disabled=true;nb.textContent='กำลังส่ง…';
   for(const k in FILES){const key=k==='drw'||k==='draw'?'drawings':k;o.files[key]=[];for(const f of FILES[k]){if(f.size>40e6){err.textContent='ไฟล์ '+f.name+' เกิน 40MB · ส่งในแชต LINE แทน';continue}o.files[key].push(await rd(f))}}
   if(F==='1.1')Object.assign(o,{province:A.prov,floors:z.fl,area_m2:z.area,fw:z.w,fl:z.l,land_sqw:z.land,land_wl:z.landwl,bedrooms:r.bed,bathrooms:r.bath,rooms:'ห้องนอน '+r.bed+' · ห้องน้ำ '+r.bath+' · นั่งเล่น '+r.living+' · ครัว '+r.kitchen+' · จอดรถ '+r.park+(r.other?' · '+r.other:''),spec:{'ประหยัด':'economy','มาตรฐาน':'standard','ดี':'premium'}[A.spec]||A.spec});
