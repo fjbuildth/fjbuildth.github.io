@@ -846,7 +846,7 @@ function set(l){lang=l;document.documentElement.lang=l;busy=true;if(l==='en'){wa
  if(l==='en')mo.observe(document.body,{childList:true,subtree:true,characterData:true});else mo.disconnect();try{localStorage.setItem('fjLang',l)}catch(e){}}
 document.getElementById('langB').addEventListener('click',function(){set(lang==='en'?'th':'en')});
 var q=(location.search.match(/[?&]lang=(en|th)/)||[])[1],sv=null;try{sv=localStorage.getItem('fjLang')}catch(e){}
-var start=q||sv||((navigator.language||'').toLowerCase().indexOf('th')===0?'th':(navigator.language?'en':'th'));
+var start=q||sv||'th';
 document.documentElement.lang='th';if(start==='en')set('en');})();</script>
 </body>
 </html>
