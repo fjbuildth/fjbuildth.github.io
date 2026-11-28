@@ -237,7 +237,7 @@ html[lang=ru] body *:not(script):not(style),html[lang=zh-Hans] body *:not(script
 <div class="fig" id="fig">
 <div class="tools">
 <button class="chip" id="bRot" aria-pressed="true">หมุนอัตโนมัติ</button>
-<button class="chip" id="bXr" aria-pressed="true">โปร่งแสง</button>
+<button class="chip" id="bXr" aria-pressed="true">👁 โปร่งแสง</button>
 <button class="chip" id="bDim" aria-pressed="true">ระยะ</button>
 <button class="chip" id="bPlan" aria-pressed="false">แปลน 2 มิติ</button>
 <button class="chip" id="bReset">มุมเริ่มต้น</button>
@@ -810,6 +810,7 @@ const bRot=$('bRot'),bPlan=$('bPlan'),bXr=$('bXr'),bDim=$('bDim'),st=$('st'),stN
 function stopRot(){ctlP.autoRotate=false;bRot.setAttribute('aria-pressed','false')}
 bRot.onclick=()=>{ctlP.autoRotate=!ctlP.autoRotate;bRot.setAttribute('aria-pressed',ctlP.autoRotate)};
 bXr.onclick=()=>{xray=!xray;bXr.setAttribute('aria-pressed',xray);applyAll()};
+addEventListener('keydown',e=>{if((e.key==='x'||e.key==='X')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)&&!e.target.isContentEditable)bXr.click()});
 bDim.onclick=()=>{showDim=!showDim;bDim.setAttribute('aria-pressed',showDim);applyAll()};
 const home=()=>{camP.position.set(17.5,12.5,21);ctlP.target.set(-1,3,.6);ctlP.update()};
 function setPlan(v){plan=v;bPlan.setAttribute('aria-pressed',v);cam=v?camO:camP;sun.castShadow=!v;ctlP.enabled=!v;ctlO.enabled=v;
@@ -845,7 +846,8 @@ function restore(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW
 var mo=new MutationObserver(function(ms){if(lang==='th'||busy)return;busy=true;ms.forEach(function(m){if(m.type==='characterData'){var n=m.target;if(TH.test(n.data)){orig.set(n,n.data);var t=tr(n.data);if(t!==n.data)n.data=t}}else m.addedNodes.forEach(function(n){if(n.nodeType===3){if(TH.test(n.data)){orig.set(n,n.data);var t=tr(n.data);if(t!==n.data)n.data=t}}else if(n.nodeType===1)walk(n)})});busy=false});
 var sel=document.getElementById('langS');
 function set(l){if(!(l in IX))l='th';busy=true;mo.disconnect();restore();lang=l;document.documentElement.lang=l==='zh'?'zh-Hans':l;if(l!=='th'){walk(document.body);document.title=tr(docT)}else document.title=docT;busy=false;
- if(l!=='th')mo.observe(document.body,{childList:true,subtree:true,characterData:true});if(sel)sel.value=l;try{localStorage.setItem('fjLang',l)}catch(e){}}
+ if(l!=='th')mo.observe(document.body,{childList:true,subtree:true,characterData:true});if(sel)sel.value=l;try{localStorage.setItem('fjLang',l)}catch(e){}
+ Array.prototype.forEach.call(document.querySelectorAll('a[href^="fj-sample-"],a[data-fjs]'),function(x){var b=x.getAttribute('data-fjs');if(!b){b=x.getAttribute('href');x.setAttribute('data-fjs',b)}x.setAttribute('href',l==='th'?b:b.replace(/\.html$/,'-'+l+'.html'))})}
 if(sel)sel.addEventListener('change',function(){set(sel.value)});
 var q=(location.search.match(/[?&]lang=(th|en|ru|zh)/)||[])[1],sv=null;try{sv=localStorage.getItem('fjLang')}catch(e){}
 document.documentElement.lang='th';set(q||sv||'th');})();</script>
